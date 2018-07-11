@@ -1,0 +1,41 @@
+component Layout(app *aero.Application, ctx *aero.Context, content string)
+	html(lang="en")
+		head
+			//- Styles
+			link(rel="stylesheet", href="/styles")
+
+			//- Meta
+			title= app.Config.Title
+
+			//- Viewport
+			meta(name="viewport", content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+
+			//- Manifest
+			link(rel="manifest", href="/manifest.json")
+		body
+			#container
+				Navigation
+				Content(content)
+			
+			LoadingAnimation
+			script(src="/scripts")
+
+component Navigation
+	#navigation-container
+		nav#navigation
+
+component Content(content string)
+	#content-container
+		main#content.fade!= content
+
+component LoadingAnimation
+	#loading.sk-cube-grid.fade
+		.sk-cube.hide
+		.sk-cube
+		.sk-cube.hide
+		.sk-cube
+		.sk-cube.sk-cube-center
+		.sk-cube
+		.sk-cube.hide
+		.sk-cube
+		.sk-cube.hide

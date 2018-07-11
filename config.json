@@ -1,8 +1,13 @@
 {
-	"domain": "",
+	"domain": "beta.materia.mui.jp",
 	"title": "mui Materia",
-	"fonts": [],
-	"styles": [],
+	"fonts": [
+		"Roboto"
+	],
+	"styles": [
+		"reset",
+		"base"
+	],
 	"scripts": {
 		"main": "main"
 	},
