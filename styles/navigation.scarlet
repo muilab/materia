@@ -9,11 +9,11 @@
 
 	&.active
 		color white
-		background-color link-color
+		background-color link-color !important
 	
 	:hover
 		color white
-		background-color hsla(link-color-h, link-color-s, link-color-l, 0.75)
+		background-color hsla(link-color-h, link-color-s, link-color-l, 0.85)
 
 .navigation-button-text
 	display none

@@ -9,7 +9,7 @@ import (
 	"github.com/muilab/materia/components/js"
 	"github.com/muilab/materia/layout"
 	"github.com/muilab/materia/pages/contact"
-	"github.com/muilab/materia/pages/home"
+	"github.com/muilab/materia/pages/library"
 	"github.com/muilab/materia/pages/pricing"
 )
 
@@ -19,7 +19,7 @@ func Install(app *aero.Application) {
 	l.Render = fullpage.Render
 
 	// Pages
-	l.Page("/", home.Get)
+	l.Page("/", library.Get)
 	l.Page("/pricing", pricing.Get)
 	l.Page("/contact", contact.Get)
 

@@ -1,4 +1,4 @@
-package home
+package library
 
 import (
 	"github.com/aerogo/aero"
@@ -7,5 +7,5 @@ import (
 
 // Get the frontpage.
 func Get(ctx *aero.Context) string {
-	return ctx.HTML(components.Home())
+	return ctx.HTML(components.Library())
 }
