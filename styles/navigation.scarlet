@@ -5,10 +5,21 @@
 	border-bottom 1px solid rgba(0, 0, 0, 0.04)
 
 .navigation-button
-	padding 1rem 0.75rem
+	padding 1rem
+
+	&.active
+		color white
+		background-color link-color
+	
+	:hover
+		color white
+		background-color hsla(link-color-h, link-color-s, link-color-l, 0.75)
 
 .navigation-button-text
 	display none
+	text-transform uppercase
+	// letter-spacing 1px
+	// font-weight bold
 
 > 800px
 	.navigation-button

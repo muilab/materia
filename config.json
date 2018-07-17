@@ -2,7 +2,7 @@
 	"domain": "beta.materia.mui.jp",
 	"title": "mui Materia",
 	"fonts": [
-		"Lato"
+		"Ubuntu"
 	],
 	"styles": [
 		"config/general",

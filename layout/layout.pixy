@@ -24,7 +24,7 @@ component Navigation
 	#navigation-container
 		nav#navigation
 			NavigationButton("Home", "/", "home")
-			NavigationButton("Pricing", "/pricing", "money")
+			NavigationButton("Pricing", "/pricing", "dollar")
 			NavigationButton("Contact", "/contact", "envelope")
 
 component NavigationButton(name string, link string, icon string)

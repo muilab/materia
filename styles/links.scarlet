@@ -1,3 +1,4 @@
 a
 	color link-color
 	text-decoration none
+	transition all transition-speed ease
