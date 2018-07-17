@@ -2,7 +2,7 @@
 	horizontal
 	background rgba(0, 0, 0, 0.03)
 	padding 0 content-padding
-	border-bottom 1px solid rgba(0, 0, 0, 0.04)
+	// border-bottom 1px solid rgba(0, 0, 0, 0.04)
 
 .navigation-button
 	padding 1rem

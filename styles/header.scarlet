@@ -1,0 +1,4 @@
+#header
+	height 220px
+	background-image url("/images/layout/header.jpeg")
+	background-size cover
