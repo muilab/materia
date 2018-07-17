@@ -11,4 +11,4 @@ svg-icon
 		fill currentColor
 
 .icon-with-text
-	margin-right 0.5em
+	margin-right icon-text-distance

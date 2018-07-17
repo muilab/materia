@@ -1,2 +1,53 @@
 h1
-	font-size 2rem
+	font-size 2em
+	font-weight bold
+	text-align left
+
+h2
+	font-size 1.6em
+	font-weight bold
+	text-align left
+
+h3
+	font-size 1.5em
+	margin-top 0.6em
+	text-align left
+
+p, h1, h2, h3, h4, h5, h6
+	margin typography-margin 0
+	line-height text-line-height
+
+	:first-child
+		margin-top 0 !important
+
+	:last-child
+		margin-bottom 0 !important
+
+h1, h2
+	margin-top content-padding
+	margin-bottom content-padding
+
+strong
+	font-weight bold
+
+em
+	font-style italic
+
+ol
+	li
+		list-style-type decimal
+
+hr
+	border none
+	border-bottom 1px solid text-color
+	opacity 0.1
+	margin-bottom content-padding
+
+p
+	word-wrap break-word
+
+	> img
+		max-width 100%
+		border-radius image-border-radius
+		display inherit
+		margin 0 auto

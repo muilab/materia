@@ -29,8 +29,8 @@ component Navigation
 
 component NavigationButton(name string, link string, icon string)
 	a.navigation-button(href=link)
-		svg-icon.icon-with-text(name=icon)
-		span= name
+		svg-icon(name=icon)
+		span.navigation-button-text= name
 
 component Content(content string)
 	#content-container

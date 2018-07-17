@@ -1,6 +1,19 @@
 #navigation
 	horizontal
-	background rgba(0, 0, 0, 0.05)
+	background rgba(0, 0, 0, 0.03)
+	padding 0 content-padding
+	border-bottom 1px solid rgba(0, 0, 0, 0.04)
 
 .navigation-button
 	padding 1rem 0.75rem
+
+.navigation-button-text
+	display none
+
+> 800px
+	.navigation-button
+		svg-icon
+			margin-right icon-text-distance
+	
+	.navigation-button-text
+		display inline-block

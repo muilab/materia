@@ -1,4 +1,9 @@
 // Basics
-const text-font = "Roboto"
+const text-font = "Lato"
 const base-font-size = 20px
 const transition-speed = 200ms
+const content-padding = 1.5rem
+const icon-text-distance = 0.5em
+const image-border-radius = 3px
+const typography-margin = 1rem
+const text-line-height = 1.6em
