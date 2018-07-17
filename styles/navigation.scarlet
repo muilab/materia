@@ -1,0 +1,6 @@
+#navigation
+	horizontal
+	background rgba(0, 0, 0, 0.05)
+
+.navigation-button
+	padding 1rem 0.75rem

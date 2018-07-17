@@ -23,6 +23,14 @@ component Layout(app *aero.Application, ctx *aero.Context, content string)
 component Navigation
 	#navigation-container
 		nav#navigation
+			NavigationButton("Home", "/", "home")
+			NavigationButton("Pricing", "/pricing", "money")
+			NavigationButton("Contact", "/contact", "envelope")
+
+component NavigationButton(name string, link string, icon string)
+	a.navigation-button(href=link)
+		svg-icon.icon-with-text(name=icon)
+		span= name
 
 component Content(content string)
 	#content-container

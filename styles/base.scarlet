@@ -1,4 +1,8 @@
 html
 	height 100%
-	font-family "Roboto", sans-serif
-	font-size 100%
+	font-family text-font
+	font-size base-font-size
+
+body
+	color text-color
+	background-color bg-color

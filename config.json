@@ -5,8 +5,12 @@
 		"Roboto"
 	],
 	"styles": [
+		"config/general",
+		"config/colors",
+		"mixins/layout",
 		"reset",
-		"base"
+		"base",
+		"typography"
 	],
 	"scripts": {
 		"main": "main"

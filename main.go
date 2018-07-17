@@ -19,14 +19,39 @@ func main() {
 }
 
 func configure(app *aero.Application) *aero.Application {
+	// Certificate
+	app.Security.Load("security/server.crt", "security/server.key")
+
+	// Setup routes
+	route(app)
+
+	// API
+	mui.API.Install(app)
+
+	// Close the database node on shutdown
+	app.OnEnd(mui.Node.Close)
+
+	// Prefetch all collections
+	mui.DB.Prefetch()
+
+	// Send "Link" header for Cloudflare on HTML responses
+	app.Use(func(ctx *aero.Context, next func()) {
+		if !strings.HasPrefix(ctx.URI(), "/_/") && strings.Contains(ctx.Request().Header().Get("Accept"), "text/html") {
+			ctx.Response().Header().Set("Link", "</styles>; rel=preload; as=style,</scripts>; rel=preload; as=script")
+		}
+
+		next()
+	})
+
+	return app
+}
+
+func route(app *aero.Application) {
 	l := layout.New(app)
 	l.Render = fullpage.Render
 
 	// Pages
 	l.Page("/", home.Get)
-
-	// Certificate
-	app.Security.Load("security/server.crt", "security/server.key")
 
 	// Script bundle
 	scriptBundle := js.Bundle()
@@ -52,24 +77,4 @@ func configure(app *aero.Application) *aero.Application {
 	app.Get("/manifest.json", func(ctx *aero.Context) string {
 		return ctx.JSON(app.Config.Manifest)
 	})
-
-	// API
-	mui.API.Install(app)
-
-	// Close the database node on shutdown
-	app.OnEnd(mui.Node.Close)
-
-	// Prefetch all collections
-	mui.DB.Prefetch()
-
-	// Send "Link" header for Cloudflare on HTML responses
-	app.Use(func(ctx *aero.Context, next func()) {
-		if !strings.HasPrefix(ctx.URI(), "/_/") && strings.Contains(ctx.Request().Header().Get("Accept"), "text/html") {
-			ctx.Response().Header().Set("Link", "</styles>; rel=preload; as=style,</scripts>; rel=preload; as=script")
-		}
-
-		next()
-	})
-
-	return app
 }

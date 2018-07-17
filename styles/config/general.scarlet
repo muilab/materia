@@ -1,0 +1,4 @@
+// Basics
+const text-font = "Roboto"
+const base-font-size = 20px
+const transition-speed = 200ms
