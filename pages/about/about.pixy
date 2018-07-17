@@ -1,0 +1,3 @@
+component About
+	h1.mountable About
+	p.mountable About details.

@@ -1,0 +1,3 @@
+component Login
+	h1.mountable Login
+	p.mountable Login details.

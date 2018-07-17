@@ -8,9 +8,11 @@ import (
 	"github.com/muilab/materia/components/css"
 	"github.com/muilab/materia/components/js"
 	"github.com/muilab/materia/layout"
+	"github.com/muilab/materia/pages/about"
 	"github.com/muilab/materia/pages/books"
 	"github.com/muilab/materia/pages/contact"
 	"github.com/muilab/materia/pages/library"
+	"github.com/muilab/materia/pages/login"
 	"github.com/muilab/materia/pages/pricing"
 	"github.com/muilab/materia/pages/report"
 	"github.com/muilab/materia/pages/workshop"
@@ -28,6 +30,8 @@ func Install(app *aero.Application) {
 	l.Page("/report", report.Get)
 	l.Page("/pricing", pricing.Get)
 	l.Page("/contact", contact.Get)
+	l.Page("/about", about.Get)
+	l.Page("/login", login.Get)
 
 	// Script bundle
 	scriptBundle := js.Bundle()
