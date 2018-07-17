@@ -25,6 +25,7 @@ component Layout(app *aero.Application, ctx *aero.Context, content string, user 
 
 component Navigation(user *mui.User)
 	aside#header.mountable
+	
 	nav#navigation
 		NavigationButton("Library", "/", "th-large")
 		NavigationButton("Books", "/books", "book")

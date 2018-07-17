@@ -6,6 +6,8 @@ import "github.com/aerogo/nano"
 type Material struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
+	// Samples []*Sample
+	// Image string
 
 	HasCreator
 }
