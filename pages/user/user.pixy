@@ -1,0 +1,3 @@
+component User(user *mui.User)
+	h1.mountable= user.Nick
+	p.mountable= user.RealName()

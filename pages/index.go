@@ -15,6 +15,7 @@ import (
 	"github.com/muilab/materia/pages/login"
 	"github.com/muilab/materia/pages/pricing"
 	"github.com/muilab/materia/pages/report"
+	"github.com/muilab/materia/pages/user"
 	"github.com/muilab/materia/pages/workshop"
 )
 
@@ -32,6 +33,7 @@ func Install(app *aero.Application) {
 	l.Page("/contact", contact.Get)
 	l.Page("/about", about.Get)
 	l.Page("/login", login.Get)
+	l.Page("/user/:id", user.Get)
 
 	// Script bundle
 	scriptBundle := js.Bundle()
