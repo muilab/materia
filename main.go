@@ -1,11 +1,11 @@
 package main
 
 import (
-	"strings"
-
 	"github.com/aerogo/aero"
 
+	"github.com/aerogo/session-store-nano"
 	"github.com/muilab/materia/auth"
+	"github.com/muilab/materia/middleware"
 	"github.com/muilab/materia/mui"
 	"github.com/muilab/materia/pages"
 )
@@ -16,6 +16,10 @@ func main() {
 }
 
 func configure(app *aero.Application) *aero.Application {
+	// Sessions
+	app.Sessions.Duration = 3600 * 24 * 30 * 6
+	app.Sessions.Store = nanostore.New(mui.DB.Collection("Session"))
+
 	// Certificate
 	app.Security.Load("security/server.crt", "security/server.key")
 
@@ -28,20 +32,20 @@ func configure(app *aero.Application) *aero.Application {
 	// API
 	mui.API.Install(app)
 
+	// Rewrite
+	app.Rewrite(rewrite)
+
+	// Middleware
+	app.Use(
+		middleware.Session,
+		middleware.LinkHeaderPush,
+	)
+
 	// Close the database node on shutdown
 	app.OnEnd(mui.Node.Close)
 
 	// Prefetch all collections
 	mui.DB.Prefetch()
-
-	// Send "Link" header for Cloudflare on HTML responses
-	app.Use(func(ctx *aero.Context, next func()) {
-		if !strings.HasPrefix(ctx.URI(), "/_/") && strings.Contains(ctx.Request().Header().Get("Accept"), "text/html") {
-			ctx.Response().Header().Set("Link", "</styles>; rel=preload; as=style,</scripts>; rel=preload; as=script")
-		}
-
-		next()
-	})
 
 	return app
 }

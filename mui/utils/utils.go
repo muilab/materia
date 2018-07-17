@@ -6,3 +6,10 @@ import "time"
 func DateTimeUTC() string {
 	return time.Now().UTC().Format(time.RFC3339)
 }
+
+// PanicOnError will panic if the error is not nil.
+func PanicOnError(err error) {
+	if err != nil {
+		panic(err)
+	}
+}

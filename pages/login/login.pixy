@@ -1,9 +1,13 @@
 component Login
 	h1.mountable Login
-	p.mountable 映こゆを訴否オヒレ止善数ツ呉防均よきラ糸謙ヘ模覧クカニ影形雑どずぎの起者き野周ゆたぎな集妻ルチ見皇ーに。社止レざ貨台クタカヘ建判クん待8家まゃづや受帯ドぴづぜ雪戒ぽょー基子ノソヲ表舌ヌソア全島れクい携強攻マ子続惑びフちづ。手ねで言扉ヤホウ介父リね工了ぶド父強生ラヘヌハ別蔵もせ変宮づ左生3発な家称群でざぼ。
-	p.mountable 愛ワ建晶ニハセ宅内コミハヌ経借そ供阿めさ子航近試ヲナヒ掲財ため隊育キリサ台声メ柏菱際ぞへ阪器敗香再おンまず。富セルミ目地ぐて素害ルレせお西39別ア強得をねそき毎火ぼす強名広事ろく認武きねこう用背トよぽ問月ーく他狙ぽーかだ住部れ済新洋コヤ芸独験だぶ。田モヤハ津会埼4兵モウノ動68交界ユミヘ十活むのゅ椅円リ巨声にんほ面供ムチフル内間たづッ横4大マ低小モ捕乳撮途かみ。
-	p.mountable 吉と政住色フセ久全ロシ態再ぽな派球北ンっ禎6庁あば弱困ヲキコウ情見せ鎖弾テロヲネ法40最てぶぎ込文ぴ権智湾緩羽ぞねドぐ。載オヘ刊断ス欧藤さゆれい長知ぴるばれ終大行べ有画ニモヨ社回今59士告素英1知チヤ者9線位暮ー無合エハル落締階う。量幹破あや副線やへレず憶神ク人際ゆンへす供大アヘニマ依吉サ直瘍セサ康近ヒリ外政はむしぱ送確モエ公裁リツク置色やに。
-	p.mountable 古沢クサノフ際詰嘘山テロ見禁ざフよ社運さいン政大羅たーをひ居騎こよ怪辺べッおぎ原将ユエトシ換暮ざおる堀学ワフウマ多新ッ違4三始よレ濃渋まさる扱躍費件性イょぽお。色むびばれ違山新お氷信メ飛院むろつほ方35与的4香トへ写合イフ止逮ぎさクぼ政依ワタ転物セニオタ内経ツラニウ止越ぴなフル小掲筋ルカフ未昨だド版載給ク潟加カ知園返域ほな。
-	p.mountable 招きえふ鉱消づそぞざ政官ゅび会7文タリ意花こ八中カモワ募定ぎぜむ環勧録ごい銃5者ネニ生週園返とこた。状ニ識後よゅめ近晩場つの戦治強秀事ほラれ飛告ふ社際ンれさじ対際が出市ワスト込敷えりび。習洗ラス法戒スホヱリ戦保ヒモヤ夫就ヌムフ身男テスク異道トこあぎ水合14申キヒ王間トヲロ活中ねぜぽ逮緩ニ分帯ツフヱニ及善94仕げで集際きあす猛稿完撃ねまつ。
-	p.mountable
-		a(href="/auth/google", data-ajax="false") Login via Google
+
+	.login-buttons.mountable
+		if mui.APIKeys.Google.Secret != ""
+			a.login-button.login-button-google(href="/auth/google", data-ajax="false")
+				svg-icon.icon-with-text(name="google")
+				span Sign in via Google
+
+		if mui.APIKeys.Facebook.Secret != ""
+			a.login-button.login-button-facebook(href="/auth/facebook", data-ajax="false")
+				svg-icon.icon-with-text(name="facebook")
+				span Sign in via Facebook
