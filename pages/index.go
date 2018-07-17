@@ -8,9 +8,12 @@ import (
 	"github.com/muilab/materia/components/css"
 	"github.com/muilab/materia/components/js"
 	"github.com/muilab/materia/layout"
+	"github.com/muilab/materia/pages/books"
 	"github.com/muilab/materia/pages/contact"
 	"github.com/muilab/materia/pages/library"
 	"github.com/muilab/materia/pages/pricing"
+	"github.com/muilab/materia/pages/report"
+	"github.com/muilab/materia/pages/workshop"
 )
 
 // Install configures the application routes.
@@ -20,6 +23,9 @@ func Install(app *aero.Application) {
 
 	// Pages
 	l.Page("/", library.Get)
+	l.Page("/books", books.Get)
+	l.Page("/workshop", workshop.Get)
+	l.Page("/report", report.Get)
 	l.Page("/pricing", pricing.Get)
 	l.Page("/contact", contact.Get)
 

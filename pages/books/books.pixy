@@ -1,0 +1,3 @@
+component Books
+	h1.mountable Books
+	p.mountable Books details.

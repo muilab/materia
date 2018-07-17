@@ -1,0 +1,3 @@
+component Workshop
+	h1.mountable Workshop
+	p.mountable Workshop details.
