@@ -23,7 +23,7 @@ func configure(app *aero.Application) *aero.Application {
 	// Certificate
 	app.Security.Load("security/server.crt", "security/server.key")
 
-	// Setup routes
+	// Pages
 	pages.Install(app)
 
 	// Auth
@@ -38,7 +38,7 @@ func configure(app *aero.Application) *aero.Application {
 	// Middleware
 	app.Use(
 		middleware.Session,
-		middleware.LinkHeaderPush,
+		middleware.LinkHeader,
 	)
 
 	// Close the database node on shutdown
