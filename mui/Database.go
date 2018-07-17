@@ -9,7 +9,10 @@ import (
 var Node = nano.New(5000)
 
 // DB is the main database client.
-var DB = Node.Namespace("mui").RegisterTypes()
+var DB = Node.Namespace("mui").RegisterTypes(
+	(*Material)(nil),
+	(*User)(nil),
+)
 
 // API is the automatically created API for the database.
 var API = api.New("/api/", DB)
