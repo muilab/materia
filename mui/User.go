@@ -4,10 +4,15 @@ import "github.com/aerogo/aero"
 
 // User represents a single authenticated user.
 type User struct {
-	ID        string
-	Email     string
-	FirstName string
-	LastName  string
+	ID         string `json:"id"`
+	Email      string `json:"email" private:"true"`
+	FirstName  string `json:"firstName" private:"true"`
+	LastName   string `json:"lastName" private:"true"`
+	Registered string `json:"registered"`
+	LastLogin  string `json:"lastLogin" private:"true"`
+	LastSeen   string `json:"lastSeen" private:"true"`
+	IP         string `json:"ip" private:"true"`
+	Agent      string `json:"agent" private:"true"`
 }
 
 // RealName returns the full name of the user.

@@ -1,2 +1,3 @@
 component Pricing
 	h1 Pricing
+	p Pricing details.

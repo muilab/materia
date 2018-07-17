@@ -1,2 +1,3 @@
 component Contact
 	h1 Contact
+	p Contact details.
