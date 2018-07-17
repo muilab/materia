@@ -31,12 +31,13 @@ component Navigation
 		.spacer
 		NavigationButton("Login", "/login", "user")
 	
-	aside#header
+	aside#header.mountable
 
 component NavigationButton(name string, link string, icon string)
-	a.navigation-button(href=link)
-		svg-icon(name=icon)
-		span.navigation-button-text= name
+	a.navigation-button.mountable(href=link)
+		.navigation-button-contents
+			svg-icon(name=icon)
+			span.navigation-button-text= name
 
 component Content(content string)
 	#content-container

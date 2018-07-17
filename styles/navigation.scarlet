@@ -14,6 +14,18 @@
 	:hover
 		color white
 		background-color hsla(link-color-h, link-color-s, link-color-l, 0.85)
+	
+	:active
+		transform none
+
+		.navigation-button-contents
+			transform scale(0.96)
+
+.navigation-button-contents
+	horizontal
+	default-transition
+	justify-content center
+	align-items center
 
 .navigation-button-text
 	display none

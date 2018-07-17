@@ -1,0 +1,5 @@
+mixin default-transition
+	transition all transition-speed ease
+
+mixin push-effect
+	transform translateY(3px)

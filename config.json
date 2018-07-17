@@ -8,6 +8,7 @@
 		"config/general",
 		"config/colors",
 		"mixins/layout",
+		"mixins/effects",
 		"reset",
 		"base",
 		"typography"
