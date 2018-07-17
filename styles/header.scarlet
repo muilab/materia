@@ -1,4 +1,9 @@
 #header
-	height 220px
-	background-image url("/images/layout/header.jpeg")
-	background-size cover
+	display none
+
+> 800px
+	#header
+		display block
+		height 250px
+		background-image url("/images/layout/header.jpg")
+		background-size cover

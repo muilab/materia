@@ -21,6 +21,7 @@ component Layout(app *aero.Application, ctx *aero.Context, content string, user 
 			script(src="/scripts")
 
 component Navigation(user *mui.User)
+	aside#header.mountable
 	nav#navigation
 		NavigationButton("Library", "/", "th-large")
 		NavigationButton("Books", "/books", "book")
@@ -36,16 +37,16 @@ component Navigation(user *mui.User)
 		else
 			NavigationButton("Login", "/login", "sign-in")
 	
-	aside#header.mountable
+	
 
 component NavigationButton(name string, link string, icon string)
-	a.navigation-button.mountable(href=link)
+	a.navigation-button.mountable(href=link, aria-label=name)
 		.navigation-button-contents
 			svg-icon(name=icon)
 			span.navigation-button-text= name
 
 component NavigationButtonNoAJAX(name string, link string, icon string)
-	a.navigation-button.mountable(href=link, data-ajax="false")
+	a.navigation-button.mountable(href=link, aria-label=name, data-ajax="false")
 		.navigation-button-contents
 			svg-icon(name=icon)
 			span.navigation-button-text= name

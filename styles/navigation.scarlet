@@ -20,6 +20,13 @@
 
 		.navigation-button-contents
 			transform scale(0.96)
+	
+	[aria-label="Logout"]
+		.navigation-button-text
+			display none
+		
+		svg-icon
+			margin-right 0
 
 .navigation-button-contents
 	horizontal
