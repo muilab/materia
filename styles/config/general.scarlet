@@ -2,6 +2,7 @@
 const text-font = "Lato"
 const base-font-size = 20px
 const transition-speed = 200ms
+const mount-speed = 500ms
 const content-padding = 1.5rem
 const icon-text-distance = 0.5em
 const image-border-radius = 3px

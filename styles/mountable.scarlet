@@ -1,0 +1,10 @@
+.mountable
+	opacity 0
+	backface-visibility hidden
+	transform translateY(25px)
+	transition transform mount-speed ease, opacity mount-speed ease
+	will-change transform, opacity
+
+.mounted
+	opacity 1
+	transform translateY(0)
