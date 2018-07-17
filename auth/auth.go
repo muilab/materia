@@ -15,7 +15,7 @@ func Install(app *aero.Application) {
 			user := mui.GetUserFromContext(ctx)
 
 			if user != nil {
-				authLog.Info("User logged out", user.ID, ctx.RealIP(), user.Email, user.RealName())
+				authLog.Info("User logged out", user.ID, ctx.RealIP(), user.Accounts.Email.Address, user.RealName())
 			}
 
 			ctx.Session().Set("userId", nil)
