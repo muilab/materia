@@ -4,8 +4,11 @@ component Layout(app *aero.Application, ctx *aero.Context, content string, user 
 			//- Styles
 			link(rel="stylesheet", href="/styles")
 
-			//- Meta
+			//- Title
 			title= app.Config.Title
+
+			//- Description
+			meta(name="description", content="mui Materia is a website that allows you to access materials for use in manufacturing.")
 
 			//- Viewport
 			meta(name="viewport", content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
@@ -36,8 +39,6 @@ component Navigation(user *mui.User)
 			NavigationButtonNoAJAX("Logout", "/logout", "sign-out")
 		else
 			NavigationButton("Login", "/login", "sign-in")
-	
-	
 
 component NavigationButton(name string, link string, icon string)
 	a.navigation-button.mountable(href=link, aria-label=name)
