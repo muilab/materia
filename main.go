@@ -5,6 +5,7 @@ import (
 
 	"github.com/aerogo/aero"
 
+	"github.com/muilab/materia/auth"
 	"github.com/muilab/materia/mui"
 	"github.com/muilab/materia/pages"
 )
@@ -20,6 +21,9 @@ func configure(app *aero.Application) *aero.Application {
 
 	// Setup routes
 	pages.Install(app)
+
+	// Auth
+	auth.Install(app)
 
 	// API
 	mui.API.Install(app)
