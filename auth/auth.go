@@ -9,6 +9,13 @@ const newUserStartRoute = "/"
 
 // Install installs the authentication routes in the application.
 func Install(app *aero.Application) {
+	// Google
+	InstallGoogleAuth(app)
+
+	// Exclude from server startup tests
+	app.Test("/auth/google", nil)
+	app.Test("/auth/google/callback", nil)
+
 	// Logout
 	app.Get("/logout", func(ctx *aero.Context) string {
 		if ctx.HasSession() {
