@@ -11,7 +11,7 @@ const bg-color-l = 98%
 bg-color = hsl(bg-color-h, bg-color-s, bg-color-l)
 
 // Links
-const link-color-h = 0
+const link-color-h = 15
 const link-color-s = 100%
-const link-color-l = 65%
+const link-color-l = 48%
 link-color = hsl(link-color-h, link-color-s, link-color-l)
