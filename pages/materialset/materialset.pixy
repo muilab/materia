@@ -1,0 +1,7 @@
+component MaterialSet(set *mui.MaterialSet)
+	h1.mountable= set.Name
+	p.mountable MaterialSet details.
+
+component EditMaterialSet(set *mui.MaterialSet)
+	h1.mountable= "Editing: " + set.Name
+	p.mountable MaterialSet details.

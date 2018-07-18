@@ -8,7 +8,9 @@ type MaterialSet struct {
 	Name        string   `json:"name"`
 	MaterialIDs []string `json:"materials"`
 
+	HasDraft
 	HasCreator
+	HasEditor
 }
 
 // Materials returns all materials of the given set.

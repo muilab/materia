@@ -8,7 +8,9 @@ type Book struct {
 	Name           string   `json:"name"`
 	MaterialSetIDs []string `json:"materialSets"`
 
+	HasDraft
 	HasCreator
+	HasEditor
 }
 
 // MaterialSets returns all material sets of the given book.

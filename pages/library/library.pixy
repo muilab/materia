@@ -3,6 +3,9 @@ component Library(materialSets []*mui.MaterialSet)
 	
 	each set in materialSets
 		MaterialSet(set)
+	
+	button.mountable.action(data-action="newObject", data-trigger="click", data-type="materialset")
+		svg-icon(name="plus")
 
 component MaterialSet(set *mui.MaterialSet)
 	h2= set.Name

@@ -9,6 +9,7 @@ type Material struct {
 	Image string `json:"image"`
 
 	HasCreator
+	HasEditor
 }
 
 // GetMaterial returns a single material by the given ID.
