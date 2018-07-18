@@ -5,6 +5,7 @@ import (
 
 	"github.com/aerogo/aero"
 	"github.com/aerogo/api"
+	"github.com/muilab/materia/mui/utils"
 )
 
 // Force interface implementations
@@ -33,6 +34,9 @@ func (set *MaterialSet) Create(ctx *aero.Context) error {
 	set.ID = GenerateID("MaterialSet")
 	set.Name = "Untitled"
 	set.IsDraft = true
+	set.Created = utils.DateTimeUTC()
+	set.CreatedBy = GetUserFromContext(ctx).ID
+	set.MaterialIDs = []string{}
 	return nil
 }
 

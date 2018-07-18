@@ -16,7 +16,10 @@
 	"scripts": {
 		"main": "main"
 	},
-	"push": [],
+	"push": [
+		"/scripts",
+		"/styles"
+	],
 	"manifest": {
 		"name": "",
 		"short_name": "Untitled",
