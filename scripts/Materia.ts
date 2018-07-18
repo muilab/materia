@@ -1,11 +1,14 @@
 import Application from "./Application"
 import Diff from "./Diff"
+import NetworkManager from "./NetworkManager"
 import SVGIcon from "elements/svg-icon/svg-icon"
 import StatusBar from "elements/status-bar/status-bar"
 
 export default class Materia {
 	app: Application
 	title: string
+	network: NetworkManager
+	status: StatusBar
 
 	constructor(app: Application) {
 		this.app = app
@@ -45,8 +48,19 @@ export default class Materia {
 	run() {
 		this.app.content = document.getElementById("content")
 		this.app.loading = document.getElementById("loading")
+		this.status = document.getElementsByTagName("status-bar")[0] as StatusBar
 
 		this.registerWebComponents()
+
+		// Network manager
+		this.network = new NetworkManager()
+		this.network.onLoadingStateChange(loading => {
+			if(loading) {
+				this.app.loading.classList.remove("fade-out")
+			} else {
+				this.app.loading.classList.add("fade-out")
+			}
+		})
 
 		// Fade out loading animation
 		this.app.loading.classList.add("fade-out")
