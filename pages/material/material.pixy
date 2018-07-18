@@ -7,4 +7,6 @@ component Material(material *mui.Material)
 			svg-icon(name="pencil")
 
 component EditMaterial(material *mui.Material)
-	InputFileUpload("material-image", "File", "image", "/api/upload/material/" + material.ID + "/image")
+	div(data-api="/api/material/" + material.ID)
+		InputText("Name", material.Name, "Name", "Name of the material")
+		InputFileUpload("material-image", "File", "image", "/api/upload/material/" + material.ID + "/image")

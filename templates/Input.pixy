@@ -1,3 +1,8 @@
+component InputText(id string, value string, label string, placeholder string)
+	.input-section.mountable
+		label(for=id)= label + ":"
+		input.input-element.action(id=id, data-field=id, type="text", value=value, placeholder=placeholder, title=placeholder, data-action="save", data-trigger="change")
+
 component InputFileUpload(id string, label string, uploadType string, endpoint string)
 	.input-section.mountable
 		label(for=id)= label + ":"

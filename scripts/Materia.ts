@@ -7,6 +7,7 @@ import mountMountables from "./Utils/mountMountables"
 import requestIdleCallback from "./Utils/requestIdleCallback"
 import checkNewVersionDelayed from "./Utils/checkNewVersionDelayed"
 import * as actions from "./Actions"
+import Diff from "./Diff"
 
 export default class Materia {
 	app: Application
@@ -126,6 +127,26 @@ export default class Materia {
 		for(const [tag, definition] of elements.entries()) {
 			window.customElements.define(tag, definition)
 		}
+	}
+
+	reloadContent() {
+		let headers = new Headers()
+		let path = location.pathname
+
+		return fetch("/_" + path, {
+			credentials: "same-origin",
+			headers
+		})
+		.then(response => {
+			if(location.pathname !== path) {
+				return Promise.reject("old request")
+			}
+
+			return Promise.resolve(response)
+		})
+		.then(response => response.text())
+		.then(html => Diff.innerHTML(this.app.content, html))
+		.then(() => this.app.emit("DOMContentLoaded"))
 	}
 
 	applyPageTitle() {
