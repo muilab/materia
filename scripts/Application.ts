@@ -1,5 +1,5 @@
 import Diff from "./Diff"
-import { delay } from "./Utils"
+import delay from "./Utils/delay"
 
 class LoadOptions {
 	addToHistory?: boolean

@@ -1,5 +1,5 @@
 import Diff from "scripts/Diff"
-import { delay } from "scripts/Utils"
+import delay from "scripts/Utils/delay"
 
 const defaultInfoDelay = 2000
 const defaultErrorDelay = 4000
@@ -9,7 +9,6 @@ export default class StatusBar extends HTMLElement {
 
 	connectedCallback() {
 		this.text = document.getElementById("status-bar-text")
-		this.showInfo("Ready!")
 	}
 
 	show(message: string, duration: number) {

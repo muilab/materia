@@ -1,8 +1,12 @@
 import Application from "./Application"
-import Diff from "./Diff"
 import NetworkManager from "./NetworkManager"
 import SVGIcon from "elements/svg-icon/svg-icon"
 import StatusBar from "elements/status-bar/status-bar"
+import findAll from "./Utils/findAll"
+import mountMountables from "./Utils/mountMountables"
+import requestIdleCallback from "./Utils/requestIdleCallback"
+import checkNewVersionDelayed from "./Utils/checkNewVersionDelayed"
+import * as actions from "./Actions"
 
 export default class Materia {
 	app: Application
@@ -22,7 +26,6 @@ export default class Materia {
 		// Event listeners
 		document.addEventListener("readystatechange", this.onReadyStateChange.bind(this))
 		document.addEventListener("DOMContentLoaded", this.onContentLoaded.bind(this))
-		window.addEventListener("popstate", this.onPopState.bind(this))
 
 		// If we finished loading the DOM (either "interactive" or "complete" state),
 		// immediately trigger the event listener functions.
@@ -30,6 +33,9 @@ export default class Materia {
 			this.app.emit("DOMContentLoaded")
 			this.run()
 		}
+
+		// Idle
+		requestIdleCallback(this.onIdle.bind(this))
 	}
 
 	onReadyStateChange() {
@@ -41,8 +47,9 @@ export default class Materia {
 	}
 
 	onContentLoaded() {
+		mountMountables()
+		this.assignActions()
 		this.applyPageTitle()
-		this.mountMountables()
 	}
 
 	run() {
@@ -66,6 +73,43 @@ export default class Materia {
 		this.app.loading.classList.add("fade-out")
 	}
 
+	onIdle() {
+		// Register event listeners
+		document.addEventListener("keydown", this.onKeyDown.bind(this), false)
+		window.addEventListener("popstate", this.onPopState.bind(this))
+		window.addEventListener("error", this.onError.bind(this))
+
+		// Service worker
+		// this.serviceWorkerManager = new ServiceWorkerManager(this, "/service-worker")
+		// this.serviceWorkerManager.register()
+
+		// Periodically check etags of scripts and styles to let the user know about page updates
+		checkNewVersionDelayed("/scripts", this.status)
+		checkNewVersionDelayed("/styles", this.status)
+	}
+
+	onKeyDown(e: KeyboardEvent) {
+		// ...
+	}
+
+	// This is called every time an uncaught JavaScript error is thrown
+	onError(evt: ErrorEvent) {
+		let report = {
+			message: evt.message,
+			stack: evt.error.stack,
+			fileName: evt.filename,
+			lineNumber: evt.lineno,
+			columnNumber: evt.colno,
+			userAgent: navigator.userAgent,
+		}
+
+		console.log("Error report:", report)
+
+		// this.network.post("/api/new/clienterrorreport", report)
+		// .then(() => console.log("Successfully reported the error to the website staff."))
+		// .catch(() => console.warn("Failed reporting the error to the website staff."))
+	}
+
 	registerWebComponents() {
 		if(!("customElements" in window)) {
 			console.warn("Web components not supported in your current browser")
@@ -84,33 +128,6 @@ export default class Materia {
 		}
 	}
 
-	mountMountables() {
-		let mountables = [...document.getElementsByClassName("mountable")]
-
-		let fadeIndex = function(i) {
-			return function() {
-				Diff.mutations.queue(() => mountables[i].classList.add("mounted"))
-			}
-		}
-
-		let count = 0
-
-		for(let i = 0; i < mountables.length; i++) {
-			if(mountables[i].classList.contains("mounted")) {
-				continue
-			}
-
-			// Special case: Paragraphs in blockquotes should never be mounted.
-			if(mountables[i].parentElement.tagName === "BLOCKQUOTE") {
-				mountables[i].classList.remove("mountable")
-				continue
-			}
-
-			window.setTimeout(fadeIndex(i), count * 50)
-			count++
-		}
-	}
-
 	applyPageTitle() {
 		let header = document.querySelector("h1")
 
@@ -118,6 +135,60 @@ export default class Materia {
 			document.title = this.title
 		} else {
 			document.title = header.textContent
+		}
+	}
+
+	assignActions() {
+		for(let element of findAll("action")) {
+			let actionTrigger = element.dataset.trigger
+			let actionName = element.dataset.action
+	
+			// Filter out invalid definitions
+			if(!actionTrigger || !actionName) {
+				continue
+			}
+	
+			let oldAction = element["action assigned"]
+	
+			if(oldAction) {
+				// If the action assigned is the exact same, skip this element
+				if(oldAction.trigger === actionTrigger && oldAction.action === actionName) {
+					continue
+				}
+	
+				// Otherwise remove the existing event listener and continue to assign
+				element.removeEventListener(oldAction.trigger, oldAction.handler)
+			}
+	
+			// This prevents default actions on links
+			if(actionTrigger === "click" && element.tagName === "A") {
+				element.onclick = null
+			}
+	
+			// Warn us about undefined actions
+			if(!(actionName in actions)) {
+				this.status.showError(`Action '${actionName}' has not been defined`)
+				continue
+			}
+	
+			// Register the actual action handler
+			let actionHandler = e => {
+				actions[actionName](this, element, e)
+	
+				e.stopPropagation()
+				e.preventDefault()
+			}
+	
+			element.addEventListener(actionTrigger, actionHandler)
+	
+			// Use "action assigned" flag instead of removing the class.
+			// This will make sure that DOM diffs which restore the class name
+			// will not assign the action multiple times to the same element.
+			element["action assigned"] = {
+				trigger: actionTrigger,
+				action: actionName,
+				handler: actionHandler
+			}
 		}
 	}
 
