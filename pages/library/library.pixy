@@ -1,17 +1,20 @@
-component Library(materialSets []*mui.MaterialSet)
-	h1.mountable Library
+component Library(materialSets []*mui.MaterialSet, user *mui.User)
+	h1.library-header.mountable Library
 	
-	each set in materialSets
-		MaterialSet(set)
+	.material-sets
+		each set in materialSets
+			MaterialSetPreview(set)
 	
-	button.mountable.action(data-action="newObject", data-trigger="click", data-type="materialset")
-		svg-icon(name="plus")
+	if user != nil
+		button.mountable.action(data-action="newObject", data-trigger="click", data-type="materialset")
+			svg-icon(name="plus")
 
-component MaterialSet(set *mui.MaterialSet)
-	h2= set.Name
+component MaterialSetPreview(set *mui.MaterialSet)
+	a.material-set.mountable(href=set.Link())
+		img.material-image(src=set.Image(), alt="Material")
 
-	each material in set.Materials()
-		Material(material)
+		//- each material in set.Materials()
+		//- 	MaterialPreview(material)
 
-component Material(material *mui.Material)
+component MaterialPreview(material *mui.Material)
 	h3= material.Name

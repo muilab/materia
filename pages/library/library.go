@@ -8,6 +8,7 @@ import (
 
 // Get the frontpage.
 func Get(ctx *aero.Context) string {
+	user := mui.GetUserFromContext(ctx)
 	allMaterialSets := mui.AllMaterialSets()
-	return ctx.HTML(components.Library(allMaterialSets))
+	return ctx.HTML(components.Library(allMaterialSets, user))
 }

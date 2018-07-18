@@ -1,0 +1,21 @@
+.library-header
+	// text-align center
+
+.material-sets
+	horizontal-wrap
+	justify-content center
+
+.material-set
+	margin 1rem
+
+.material-image
+	width 250px
+	height 250px
+	border-radius image-border-radius
+	border 1px solid rgba(0, 0, 0, 0.25)
+	box-shadow 0 0 1rem rgba(0, 0, 0, 0.13)
+	object-fit cover
+	default-transition
+
+	:hover
+		transform scale(1.05)

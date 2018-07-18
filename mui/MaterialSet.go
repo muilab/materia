@@ -1,6 +1,11 @@
 package mui
 
-import "github.com/aerogo/nano"
+import (
+	"math/rand"
+	"strconv"
+
+	"github.com/aerogo/nano"
+)
 
 // MaterialSet is a set of materials.
 type MaterialSet struct {
@@ -23,6 +28,16 @@ func (set *MaterialSet) Materials() []*Material {
 	}
 
 	return materials
+}
+
+// Link returns the permalink for this object.
+func (set *MaterialSet) Link() string {
+	return "/materialset/" + set.ID
+}
+
+// Image returns the image URL of the main material.
+func (set *MaterialSet) Image() string {
+	return "/images/materials/original/mat" + strconv.Itoa(rand.Intn(10)+1) + ".jpg"
 }
 
 // GetMaterialSet returns a single material by the given ID.
