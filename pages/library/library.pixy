@@ -11,7 +11,7 @@ component Library(materialSets []*mui.MaterialSet, user *mui.User)
 
 component MaterialSetPreview(set *mui.MaterialSet)
 	a.material-set.mountable(href=set.Link())
-		img.material-image(src=set.Image(), alt="Material")
+		img.material-image(src=set.ImageLink("original"), alt="Material")
 
 		//- each material in set.Materials()
 		//- 	MaterialPreview(material)

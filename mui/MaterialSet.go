@@ -1,9 +1,6 @@
 package mui
 
 import (
-	"math/rand"
-	"strconv"
-
 	"github.com/aerogo/nano"
 )
 
@@ -35,9 +32,19 @@ func (set *MaterialSet) Link() string {
 	return "/materialset/" + set.ID
 }
 
-// Image returns the image URL of the main material.
-func (set *MaterialSet) Image() string {
-	return "/images/materials/original/mat" + strconv.Itoa(rand.Intn(10)+1) + ".jpg"
+// ImageLink returns the image URL of the main material.
+func (set *MaterialSet) ImageLink(size string) string {
+	if len(set.MaterialIDs) > 0 {
+		return set.MainMaterial().ImageLink(size)
+	}
+
+	// return fmt.Sprintf("/images/materials/%s/%d.jpg", size, rand.Intn(10)+1)
+	return "/images/errors/404.png"
+}
+
+// MainMaterial returns the main material, if available.
+func (set *MaterialSet) MainMaterial() *Material {
+	return nil
 }
 
 // GetMaterialSet returns a single material by the given ID.
