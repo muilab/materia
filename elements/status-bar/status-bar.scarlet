@@ -1,0 +1,30 @@
+status-bar
+	horizontal
+	position fixed
+	bottom 0
+	left 0
+	width 100%
+	padding calc(content-padding / 2) content-padding
+	pointer-events none
+	z-index 1000
+
+	&.fade-out
+		z-index 1
+
+#status-bar-text
+	flex 1
+	text-align center
+
+#status-bar-close
+	pointer-events auto !important
+
+	:hover
+		cursor pointer
+
+.error-message
+	color white
+	background-color hsl(0, 75%, 50%)
+
+.info-message
+	color white
+	background link-color

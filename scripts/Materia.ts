@@ -1,6 +1,7 @@
 import Application from "./Application"
-import SVGIcon from "elements/svg-icon/svg-icon"
 import Diff from "./Diff"
+import SVGIcon from "elements/svg-icon/svg-icon"
+import StatusBar from "elements/status-bar/status-bar"
 
 export default class Materia {
 	app: Application
@@ -59,7 +60,8 @@ export default class Materia {
 
 		// Custom element names must have a dash in their name
 		const elements = new Map<string, Function>([
-			["svg-icon", SVGIcon]
+			["svg-icon", SVGIcon],
+			["status-bar", StatusBar]
 		])
 
 		// Register all custom elements

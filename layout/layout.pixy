@@ -21,6 +21,7 @@ component Layout(app *aero.Application, ctx *aero.Context, content string, user 
 				Content(content)
 			
 			LoadingAnimation
+			StatusBar
 			script(src="/scripts")
 
 component Navigation(user *mui.User)
@@ -56,6 +57,12 @@ component NavigationButtonNoAJAX(name string, link string, icon string)
 component Content(content string)
 	#content-container
 		main#content.fade!= content
+
+component StatusBar
+	status-bar.fade.fade-out
+		#status-bar-text
+		#status-bar-close.action(href="#", data-trigger="click", data-action="closeStatusBar", aria-label="Close status bar")
+			svg-icon(name="close")
 
 component LoadingAnimation
 	#loading.loading-cube-grid.fade
