@@ -10,9 +10,11 @@ var Node = nano.New(5000)
 
 // DB is the main database client.
 var DB = Node.Namespace("mui").RegisterTypes(
+	(*Book)(nil),
 	(*EmailToUser)(nil),
 	(*GoogleToUser)(nil),
 	(*Material)(nil),
+	(*MaterialSet)(nil),
 	(*User)(nil),
 	(*Session)(nil),
 )

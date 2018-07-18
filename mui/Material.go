@@ -4,10 +4,9 @@ import "github.com/aerogo/nano"
 
 // Material is a material that can be used for CG and manufacturing.
 type Material struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	// Samples []*Sample
-	// Image string
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Image string `json:"image"`
 
 	HasCreator
 }
@@ -47,4 +46,17 @@ func AllMaterials() []*Material {
 	}
 
 	return all
+}
+
+// FilterMaterials filters all materials by a custom function.
+func FilterMaterials(filter func(*Material) bool) []*Material {
+	var filtered []*Material
+
+	for obj := range StreamMaterials() {
+		if filter(obj) {
+			filtered = append(filtered, obj)
+		}
+	}
+
+	return filtered
 }

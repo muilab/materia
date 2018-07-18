@@ -1,3 +1,8 @@
-component Books
+component Books(books []*mui.Book)
 	h1.mountable Books
-	p.mountable Books details.
+	
+	each book in books
+		Book(book)
+
+component Book(book *mui.Book)
+	h2= book.Name

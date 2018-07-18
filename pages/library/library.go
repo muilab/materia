@@ -8,6 +8,6 @@ import (
 
 // Get the frontpage.
 func Get(ctx *aero.Context) string {
-	allMaterials := mui.AllMaterials()
-	return ctx.HTML(components.Library(allMaterials))
+	allMaterialSets := mui.AllMaterialSets()
+	return ctx.HTML(components.Library(allMaterialSets))
 }

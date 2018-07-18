@@ -1,8 +1,14 @@
-component Library(materials []*mui.Material)
+component Library(materialSets []*mui.MaterialSet)
 	h1.mountable Library
 	
-	each material in materials
+	each set in materialSets
+		MaterialSet(set)
+
+component MaterialSet(set *mui.MaterialSet)
+	h2= set.Name
+
+	each material in set.Materials()
 		Material(material)
 
 component Material(material *mui.Material)
-	h2= material.Name
+	h3= material.Name
