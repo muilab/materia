@@ -16,6 +16,11 @@ type Material struct {
 	HasEditor
 }
 
+// Link returns the permalink for this object.
+func (material *Material) Link() string {
+	return "/material/" + material.ID
+}
+
 // ImageLink returns the image URL of the material.
 func (material *Material) ImageLink(size string) string {
 	return fmt.Sprintf("/images/materials/%s/%s.jpg", size, material.ID)

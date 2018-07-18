@@ -1,11 +1,11 @@
 .library-header
 	// text-align center
 
-.material-sets
+.materials
 	horizontal-wrap
 	justify-content center
 
-.material-set
+.material
 	margin 1rem
 
 .material-image

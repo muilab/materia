@@ -60,7 +60,8 @@ component Content(content string)
 
 component StatusBar
 	status-bar.fade.fade-out
-		#status-bar-text
+		#status-bar-text-container
+			p#status-bar-text
 		#status-bar-close.action(href="#", data-trigger="click", data-action="closeStatusBar", aria-label="Close status bar")
 			svg-icon(name="close")
 

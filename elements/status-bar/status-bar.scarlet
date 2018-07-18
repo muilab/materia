@@ -11,11 +11,15 @@ status-bar
 	&.fade-out
 		z-index 1
 
-#status-bar-text
+#status-bar-text-container
 	flex 1
+
+#status-bar-text
 	text-align center
 
 #status-bar-close
+	horizontal
+	align-items center
 	pointer-events auto !important
 
 	:hover

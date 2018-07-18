@@ -11,11 +11,11 @@ import (
 // Get the frontpage.
 func Get(ctx *aero.Context) string {
 	user := mui.GetUserFromContext(ctx)
-	allMaterialSets := mui.AllMaterialSets()
+	allMaterials := mui.AllMaterials()
 
-	sort.Slice(allMaterialSets, func(i, j int) bool {
-		return allMaterialSets[i].Created > allMaterialSets[j].Created
+	sort.Slice(allMaterials, func(i, j int) bool {
+		return allMaterials[i].Created > allMaterials[j].Created
 	})
 
-	return ctx.HTML(components.Library(allMaterialSets, user))
+	return ctx.HTML(components.Library(allMaterials, user))
 }

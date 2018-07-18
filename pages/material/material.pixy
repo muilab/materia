@@ -1,0 +1,10 @@
+component Material(material *mui.Material)
+	h1.mountable= material.Name
+	p.mountable Material details.
+
+	.mountable
+		a(href=material.Link() + "/edit")
+			svg-icon(name="pencil")
+
+component EditMaterial(material *mui.Material)
+	InputFileUpload("material-image", "File", "image", "/api/upload/material/" + material.ID + "/image")
