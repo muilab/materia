@@ -23,6 +23,9 @@ func configure(app *aero.Application) *aero.Application {
 	// Certificate
 	app.Security.Load("security/server.crt", "security/server.key")
 
+	// Content security policy
+	app.ContentSecurityPolicy.Set("img-src", "https: data:")
+
 	// Pages
 	pages.Install(app)
 

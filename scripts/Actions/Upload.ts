@@ -25,6 +25,12 @@ export function selectFile(cmf: Materia, button: HTMLButtonElement) {
 			return
 		}
 
+		// Preview image
+		if(fileType === "image") {
+			let previews = document.getElementsByClassName(button.id + "-preview")
+			previewImage(file, previews)
+		}
+
 		uploadFile(file, fileType, endpoint, cmf)
 	}
 
@@ -67,4 +73,19 @@ function uploadFile(file: File, fileType: string, endpoint: string, cmf: Materia
 
 	cmf.status.showInfo(`Reading ${fileType} from disk...`, -1)
 	reader.readAsArrayBuffer(file)
+}
+
+// Preview image
+function previewImage(file: File, previews: HTMLCollectionOf<Element>) {
+	let reader = new FileReader()
+
+	reader.onloadend = () => {
+		for(let preview of previews) {
+			for(let img of preview.getElementsByTagName("img")) {
+				img.src = reader.result
+			}
+		}
+	}
+
+	reader.readAsDataURL(file)
 }
