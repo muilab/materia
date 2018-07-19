@@ -10,6 +10,7 @@ export function selectFile(cmf: Materia, button: HTMLButtonElement) {
 	// Click on virtual file input element
 	let input = document.createElement("input")
 	input.setAttribute("type", "file")
+	input.value = null
 
 	input.onchange = () => {
 		let file = input.files[0]

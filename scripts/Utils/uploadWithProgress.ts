@@ -2,7 +2,14 @@ export default function uploadWithProgress(url, options: RequestInit, onProgress
 	return new Promise((resolve, reject) => {
 		let xhr = new XMLHttpRequest()
 
-		xhr.onload = e => resolve(xhr.responseText)
+		xhr.onload = e => {
+			if(xhr.status !== 200) {
+				return reject(xhr.status)
+			}
+
+			resolve(xhr.responseText)
+		}
+		
 		xhr.onerror = reject
 
 		if(onProgress && xhr.upload) {

@@ -12,11 +12,11 @@ component Library(materials []*mui.Material, user *mui.User)
 
 component MaterialPreview(material *mui.Material)
 	.material.mountable
-		img.material-image(src=material.ImageLink("original"), alt="Material")
+		img.material-image(src=material.ImageLink("medium"), alt="Material")
 
 component MaterialSetPreview(set *mui.MaterialSet)
 	a.material-set.mountable(href=set.Link())
-		img.material-image(src=set.ImageLink("original"), alt="Material set")
+		img.material-image(src=set.ImageLink("medium"), alt="Material set")
 
 		//- each material in set.Materials()
 		//- 	MaterialPreview(material)

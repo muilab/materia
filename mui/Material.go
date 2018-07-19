@@ -21,9 +21,24 @@ func (material *Material) Link() string {
 	return "/material/" + material.ID
 }
 
+// HasImage tells you whether the material has an image.
+func (material *Material) HasImage() bool {
+	return material.Image.Extension != ""
+}
+
 // ImageLink returns the image URL of the material.
 func (material *Material) ImageLink(size string) string {
-	return fmt.Sprintf("/images/materials/%s/%s.jpg", size, material.ID)
+	if !material.HasImage() {
+		return "/images/errors/404.png"
+	}
+
+	extension := ".jpg"
+
+	if size == "original" {
+		extension = material.Image.Extension
+	}
+
+	return fmt.Sprintf("/images/materials/%s/%s%s?%d", size, material.ID, extension, material.Image.LastModified)
 }
 
 // GetMaterial returns a single material by the given ID.

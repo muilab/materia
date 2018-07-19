@@ -9,6 +9,7 @@ import (
 	"github.com/muilab/materia/components/js"
 	"github.com/muilab/materia/layout"
 	"github.com/muilab/materia/pages/about"
+	"github.com/muilab/materia/pages/api/upload"
 	"github.com/muilab/materia/pages/books"
 	"github.com/muilab/materia/pages/contact"
 	"github.com/muilab/materia/pages/library"
@@ -40,6 +41,9 @@ func Install(app *aero.Application) {
 	l.Page("/material/:id/edit", material.Edit)
 	l.Page("/materialset/:id", materialset.Get)
 	l.Page("/materialset/:id/edit", materialset.Edit)
+
+	// API
+	app.Post("/api/upload/material/:id/image", upload.MaterialImage)
 
 	// Script bundle
 	scriptBundle := js.Bundle()

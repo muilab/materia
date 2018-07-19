@@ -61,6 +61,8 @@ export default class Materia {
 		// These classes will never be removed on DOM diffs
 		Diff.persistentClasses.add("mounted")
 		Diff.persistentClasses.add("active")
+
+		// The contents of these tags will never be changed on DOM diffs
 		Diff.ignoreTagContents.add("svg-icon")
 
 		// Register web components
