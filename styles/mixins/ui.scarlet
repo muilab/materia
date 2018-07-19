@@ -1,0 +1,4 @@
+mixin ui-element
+	// border 1px solid ui-border-color
+	background ui-background
+	border-radius ui-border-radius

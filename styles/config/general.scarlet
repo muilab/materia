@@ -9,3 +9,4 @@ const typography-margin = 1rem
 const text-line-height = 1.6em
 const ui-border-radius = 3px
 const image-border-radius = ui-border-radius
+const input-height = 2.5rem

@@ -20,5 +20,12 @@ link-color = hsl(link-color-h, link-color-s, link-color-l)
 const ui-border-color = rgba(0, 0, 0, 0.1)
 const ui-border = 1px solid ui-border-color
 
+// UI background
+const ui-background-l = 99.5%
+ui-background = hsl(bg-color-h, bg-color-s, ui-background-l)
+
 // Loading animation
 loading-color = link-color
+
+// Button
+button-color = link-color
