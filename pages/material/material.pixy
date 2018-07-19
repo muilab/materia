@@ -1,31 +1,47 @@
-component Material(material *mui.Material)
+component Material(material *mui.Material, user *mui.User)
 	.form
-		h1.mountable= material.Name
-		p.mountable Material details.
-		p.mountable
-			MaterialPreview(material)
+		MaterialPreviewLarge(material)
 
-		.buttons.mountable(data-api="/api/material/" + material.ID)
-			a.button(href=material.Link() + "/edit")
-				svg-icon.icon-with-text(name="pencil")
-				span Edit material
+		if material.Name == ""
+			h1.material-header.mountable Untitled
+		else
+			h1.material-header.mountable= material.Name
+		
+		.material-description!= utils.MountableMarkdown(markdown.Render(material.Description))
 
-			button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="material")
-				svg-icon.icon-with-text(name="trash")
-				span Delete material
+		if user != nil
+			.buttons.mountable(data-api="/api/material/" + material.ID)
+				if material.HasImage()
+					a.button(href=material.Link() + "/download", data-ajax="false")
+						svg-icon.icon-with-text(name="download")
+						span Download
+				
+				a.button(href="/api" + material.Link(), target="_blank", data-ajax="false")
+					svg-icon.icon-with-text(name="code")
+					span API
+				
+				a.button(href=material.Link() + "/edit")
+					svg-icon.icon-with-text(name="pencil")
+					span Edit
+
+				button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="material")
+					svg-icon.icon-with-text(name="trash")
+					span Delete
 
 component EditMaterial(material *mui.Material)
 	.form
-		h1.mountable= material.Name
+		if material.Name == ""
+			h1.mountable Untitled
+		else
+			h1.mountable= material.Name
 
 		.input-sections(data-api="/api/material/" + material.ID)
 			InputText("Name", material.Name, "Name", "Name of the material")
+			InputTextArea("Description", material.Description, "Description", "Description of the material")
 			InputFileUpload("material-image", "File", "image", "/api/upload/material/" + material.ID + "/image")
 		
 		.material-image-preview
 			MaterialPreview(material)
 		
-		.buttons.mountable
-			a.button(href=material.Link())
-				svg-icon.icon-with-text(name="eye")
-				span View material
+		a.button.main-button.mountable(href=material.Link(), title="View material")
+			svg-icon(name="eye")

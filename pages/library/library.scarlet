@@ -1,5 +1,5 @@
 .library-header
-	// text-align center
+	text-align center
 
 .materials
 	horizontal-wrap
@@ -12,9 +12,13 @@
 	margin 1rem
 
 .material-image
-	width 250px
-	height 250px
+	width 256px
+	height 256px
 	border-radius image-border-radius
 	box-shadow medium-shadow
 	object-fit cover
 	default-transition
+
+.material-image-large
+	width 512px
+	height 512px

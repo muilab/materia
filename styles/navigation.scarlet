@@ -22,6 +22,8 @@
 			transform scale(0.96)
 	
 	[aria-label="Logout"]
+		display none
+
 		.navigation-button-text
 			display none
 		
@@ -44,6 +46,9 @@
 	.navigation-button
 		svg-icon
 			margin-right icon-text-distance
+	
+		[aria-label="Logout"]
+			display block
 	
 	.navigation-button-text
 		display inline-block

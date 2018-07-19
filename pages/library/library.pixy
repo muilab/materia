@@ -1,5 +1,5 @@
 component Library(materials []*mui.Material, user *mui.User)
-	h1.library-header.mountable Library
+	h1.library-header.mountable Material Library
 	
 	.materials
 		each material in materials
@@ -7,12 +7,16 @@ component Library(materials []*mui.Material, user *mui.User)
 				MaterialPreview(material)
 	
 	if user != nil
-		button.main-button.mountable.action(data-action="newObject", data-trigger="click", data-type="material")
+		button.main-button.mountable.action(data-action="newObject", data-trigger="click", data-type="material", title="Add material")
 			svg-icon(name="plus")
 
 component MaterialPreview(material *mui.Material)
 	.material.mountable
-		img.material-image(src=material.ImageLink("medium"), alt="Material")
+		img.material-image(src=material.ImageLink("medium"), alt=material.Name)
+
+component MaterialPreviewLarge(material *mui.Material)
+	.material.mountable
+		img.material-image.material-image-large(src=material.ImageLink("large"), alt=material.Name)
 
 component MaterialSetPreview(set *mui.MaterialSet)
 	a.material-set.mountable(href=set.Link())

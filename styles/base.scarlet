@@ -6,3 +6,5 @@ html
 body
 	color text-color
 	background-color bg-color
+	overflow-x hidden
+	overflow-y scroll

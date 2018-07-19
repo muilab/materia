@@ -33,7 +33,6 @@ func (material *Material) Authorize(ctx *aero.Context, action string) error {
 // Create sets the data for a new material set with data we received from the API request.
 func (material *Material) Create(ctx *aero.Context) error {
 	material.ID = GenerateID("Material")
-	material.Name = "Untitled"
 	material.Created = utils.DateTimeUTC()
 	material.CreatedBy = GetUserFromContext(ctx).ID
 	return nil

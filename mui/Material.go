@@ -8,9 +8,10 @@ import (
 
 // Material is a material that can be used for CG and manufacturing.
 type Material struct {
-	ID    string        `json:"id"`
-	Name  string        `json:"name" editable:"true"`
-	Image MaterialImage `json:"image"`
+	ID          string        `json:"id"`
+	Name        string        `json:"name" editable:"true"`
+	Description string        `json:"description" editable:"true"`
+	Image       MaterialImage `json:"image"`
 
 	HasCreator
 	HasEditor

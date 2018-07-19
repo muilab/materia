@@ -43,6 +43,7 @@ func Install(app *aero.Application) {
 	l.Page("/materialset/:id/edit", materialset.Edit)
 
 	// API
+	app.Get("/material/:id/download", material.Download)
 	app.Post("/api/upload/material/:id/image", upload.MaterialImage)
 
 	// Script bundle

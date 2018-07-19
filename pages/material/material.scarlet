@@ -1,0 +1,6 @@
+.material-header
+	margin 0.5rem 0
+	margin-top 1rem
+
+.material-description
+	margin 1rem 0

@@ -11,16 +11,16 @@ import (
 
 const (
 	// MaterialImageLargeWidth is the minimum width in pixels of a large material image.
-	MaterialImageLargeWidth = 500
+	MaterialImageLargeWidth = 512
 
 	// MaterialImageLargeHeight is the minimum height in pixels of a large material image.
-	MaterialImageLargeHeight = 500
+	MaterialImageLargeHeight = 512
 
 	// MaterialImageMediumWidth is the minimum width in pixels of a medium material image.
-	MaterialImageMediumWidth = 250
+	MaterialImageMediumWidth = 256
 
 	// MaterialImageMediumHeight is the minimum height in pixels of a medium material image.
-	MaterialImageMediumHeight = 250
+	MaterialImageMediumHeight = 256
 
 	// MaterialImageWebPQuality is the WebP quality of material images.
 	MaterialImageWebPQuality = 70

@@ -31,9 +31,9 @@ component Navigation(user *mui.User)
 		NavigationButton("Library", "/", "th-large")
 		NavigationButton("Books", "/books", "book")
 		NavigationButton("Workshop", "/workshop", "binoculars")
-		NavigationButton("Report", "/report", "history")
+		//- NavigationButton("Report", "/report", "history")
 		NavigationButton("Pricing", "/pricing", "dollar")
-		NavigationButton("Contact", "/contact", "envelope")
+		NavigationButton("About", "/about", "question-circle")
 		.spacer
 
 		if user != nil
