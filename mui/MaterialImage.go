@@ -41,15 +41,6 @@ const (
 	MaterialImageQualityBonusSmall = 15
 )
 
-// MaterialImage is the image info for materials.
-type MaterialImage struct {
-	Extension    string   `json:"extension"`
-	Width        int      `json:"width"`
-	Height       int      `json:"height"`
-	AverageColor HSLColor `json:"averageColor"`
-	LastModified int64    `json:"lastModified"`
-}
-
 // Define the material image outputs
 var materialImageOutputs = []imageoutput.Output{
 	// Original at full size

@@ -4,3 +4,11 @@
 
 .material-description
 	margin 1rem 0
+
+.material-image-preview
+	horizontal
+	justify-content center
+
+.material-samples
+	horizontal-wrap
+	justify-content space-evenly

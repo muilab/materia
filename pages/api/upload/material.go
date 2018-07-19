@@ -26,3 +26,23 @@ func MaterialImage(ctx *aero.Context) string {
 	material.Save()
 	return ctx.Text("ok")
 }
+
+// MaterialSampleImage is the endpoint for uploading material sample images.
+func MaterialSampleImage(ctx *aero.Context) string {
+	id := ctx.Get("id")
+	material, err := mui.GetMaterial(id)
+
+	if err != nil {
+		return ctx.Error(http.StatusNotFound, err)
+	}
+
+	body, err := ctx.Request().Body().Bytes()
+
+	if err != nil {
+		return ctx.Error(http.StatusBadRequest, err)
+	}
+
+	material.AddSampleImageBytes(body)
+	material.Save()
+	return ctx.Text("ok")
+}
