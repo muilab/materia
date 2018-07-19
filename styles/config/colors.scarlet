@@ -10,11 +10,15 @@ const bg-color-s = 0%
 const bg-color-l = 98%
 bg-color = hsl(bg-color-h, bg-color-s, bg-color-l)
 
-// Links
+// Link
 const link-color-h = 15
 const link-color-s = 100%
 const link-color-l = 48%
 link-color = hsl(link-color-h, link-color-s, link-color-l)
+
+// Link hover
+link-hover-color-l = calc(link-color-l + 8%)
+link-hover-color = hsl(link-color-h, link-color-s, link-hover-color-l)
 
 // UI border
 const ui-border-color = rgba(0, 0, 0, 0.1)
@@ -24,8 +28,16 @@ const ui-border = 1px solid ui-border-color
 const ui-background-l = 99.5%
 ui-background = hsl(bg-color-h, bg-color-s, ui-background-l)
 
+// UI input
+input-focus-border-color-h = link-color-h
+input-focus-border-color-s = link-color-s
+input-focus-border-color-l = calc(link-color-l + 25%)
+input-focus-border-color = hsl(input-focus-border-color-h, input-focus-border-color-s, input-focus-border-color-l)
+
 // Loading animation
 loading-color = link-color
 
 // Button
 button-color = link-color
+button-hover-color = white
+button-hover-background = link-hover-color

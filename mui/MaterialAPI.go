@@ -10,19 +10,20 @@ import (
 
 // Force interface implementations
 var (
-	_ api.Newable  = (*Material)(nil)
-	_ api.Editable = (*Material)(nil)
+	_ api.Newable   = (*Material)(nil)
+	_ api.Editable  = (*Material)(nil)
+	_ api.Deletable = (*Material)(nil)
 )
 
 // Authorize returns an error if the given API POST request is not authorized.
-func (set *Material) Authorize(ctx *aero.Context, action string) error {
+func (material *Material) Authorize(ctx *aero.Context, action string) error {
 	user := GetUserFromContext(ctx)
 
 	if user == nil {
 		return errors.New("Not logged in")
 	}
 
-	if action == "edit" && user.ID != set.CreatedBy {
+	if action == "edit" && user.ID != material.CreatedBy {
 		return errors.New("Can't edit data from other users")
 	}
 
@@ -30,15 +31,33 @@ func (set *Material) Authorize(ctx *aero.Context, action string) error {
 }
 
 // Create sets the data for a new material set with data we received from the API request.
-func (set *Material) Create(ctx *aero.Context) error {
-	set.ID = GenerateID("Material")
-	set.Name = "Untitled"
-	set.Created = utils.DateTimeUTC()
-	set.CreatedBy = GetUserFromContext(ctx).ID
+func (material *Material) Create(ctx *aero.Context) error {
+	material.ID = GenerateID("Material")
+	material.Name = "Untitled"
+	material.Created = utils.DateTimeUTC()
+	material.CreatedBy = GetUserFromContext(ctx).ID
+	return nil
+}
+
+// DeleteInContext deletes the material in the given context.
+func (material *Material) DeleteInContext(ctx *aero.Context) error {
+	return material.Delete()
+}
+
+// Delete deletes the material from the database.
+func (material *Material) Delete() error {
+	// Delete the material from all the sets that contained it
+	for set := range StreamMaterialSets() {
+		if set.Remove(material.ID) {
+			set.Save()
+		}
+	}
+
+	DB.Delete("Material", material.ID)
 	return nil
 }
 
 // Save saves the material set object in the database.
-func (set *Material) Save() {
-	DB.Set("Material", set.ID, set)
+func (material *Material) Save() {
+	DB.Set("Material", material.ID, material)
 }

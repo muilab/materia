@@ -7,8 +7,10 @@
 	"styles": [
 		"config/general",
 		"config/colors",
+		"config/shadow",
 		"mixins/layout",
 		"mixins/effects",
+		"mixins/ui",
 		"reset",
 		"base",
 		"typography"

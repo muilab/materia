@@ -47,6 +47,18 @@ func (set *MaterialSet) MainMaterial() *Material {
 	return nil
 }
 
+// Remove material with the given ID from the material list.
+func (set *MaterialSet) Remove(materialID string) bool {
+	for index, item := range set.MaterialIDs {
+		if item == materialID {
+			set.MaterialIDs = append(set.MaterialIDs[:index], set.MaterialIDs[index+1:]...)
+			return true
+		}
+	}
+
+	return false
+}
+
 // GetMaterialSet returns a single material by the given ID.
 func GetMaterialSet(id string) (*MaterialSet, error) {
 	obj, err := DB.Get("MaterialSet", id)

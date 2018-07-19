@@ -4,16 +4,21 @@ component Material(material *mui.Material)
 	p.mountable
 		MaterialPreview(material)
 
-	.mountable
-		a(href=material.Link() + "/edit")
-			svg-icon(name="pencil")
+	.buttons.mountable(data-api="/api/material/" + material.ID)
+		a.button(href=material.Link() + "/edit")
+			svg-icon.icon-with-text(name="pencil")
+			span Edit material
+
+		button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="material")
+			svg-icon.icon-with-text(name="trash")
+			span Delete material
 
 component EditMaterial(material *mui.Material)
 	div(data-api="/api/material/" + material.ID)
 		InputText("Name", material.Name, "Name", "Name of the material")
 		InputFileUpload("material-image", "File", "image", "/api/upload/material/" + material.ID + "/image")
 	
-	p.mountable
+	.buttons.mountable
 		a.button(href=material.Link())
 			svg-icon.icon-with-text(name="eye")
 			span View material

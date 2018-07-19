@@ -6,7 +6,7 @@ component Library(materials []*mui.Material, user *mui.User)
 			MaterialPreview(material)
 	
 	if user != nil
-		button.mountable.action(data-action="newObject", data-trigger="click", data-type="material")
+		button.main-button.mountable.action(data-action="newObject", data-trigger="click", data-type="material")
 			svg-icon(name="plus")
 
 component MaterialPreview(material *mui.Material)
