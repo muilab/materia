@@ -13,3 +13,12 @@ button, .button
 	align-items center
 	pointer-events all
 	height input-height
+
+	:hover,
+	&.active
+		cursor pointer
+		// color button-hover-color
+		// background button-hover-background
+
+	:active
+		push-effect
