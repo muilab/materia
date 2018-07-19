@@ -7,7 +7,7 @@ input, textarea, select, button, .button
 
 input, select, button, .button
 	height input-height
-	padding 0 0.75rem
+	padding 0 1rem
 
 input, textarea, select
 	width 100%
@@ -20,7 +20,7 @@ button, .button
 	horizontal
 	padding 0 1rem
 	color button-color
-	justify-content center
+	justify-content flex-start
 	align-items center
 	pointer-events all
 
@@ -35,13 +35,33 @@ button, .button
 
 .buttons
 	horizontal-wrap
+	justify-content center
 
 	button, .button
-		margin 0 0.4rem
+		margin 0.4rem
+
+.form
+	vertical
+	align-content center
+	align-items center
+
+.input-sections
+	vertical
+	width 100%
+	max-width 600px
+
+.input-section
+	vertical
+	margin-bottom 1.2rem
+
+label
+	line-height text-line-height
+	margin-bottom 0.4rem
 
 .main-button
 	width calc(input-height * 1.5)
 	height calc(input-height * 1.5)
+	justify-content center
 	font-size 1.5rem
 	padding 0
 	border-radius 50%

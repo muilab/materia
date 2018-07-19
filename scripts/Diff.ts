@@ -14,6 +14,7 @@ import MutationQueue from "./MutationQueue"
 export default class Diff {
 	static persistentClasses = new Set<string>()
 	static persistentAttributes = new Set<string>()
+	static ignoreTagContents = new Set<string>()
 	static mutations: MutationQueue = new MutationQueue()
 
 	// innerHTML will diff the element with the given HTML string and apply DOM mutations.
@@ -147,7 +148,9 @@ export default class Diff {
 				}
 			}
 
-			Diff.childNodes(a, b)
+			if(!Diff.ignoreTagContents.has(a.nodeName.toLowerCase())) {
+				Diff.childNodes(a, b)
+			}
 		}
 	}
 }

@@ -58,6 +58,12 @@ export default class Materia {
 		this.app.loading = document.getElementById("loading")
 		this.status = document.getElementsByTagName("status-bar")[0] as StatusBar
 
+		// These classes will never be removed on DOM diffs
+		Diff.persistentClasses.add("mounted")
+		Diff.persistentClasses.add("active")
+		Diff.ignoreTagContents.add("svg-icon")
+
+		// Register web components
 		this.registerWebComponents()
 
 		// Network manager

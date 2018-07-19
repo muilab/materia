@@ -5,6 +5,9 @@
 	horizontal-wrap
 	justify-content center
 
+	.material-image:hover
+		transform scale(1.05)
+
 .material
 	margin 1rem
 
@@ -15,6 +18,3 @@
 	box-shadow medium-shadow
 	object-fit cover
 	default-transition
-
-	:hover
-		transform scale(1.05)
