@@ -1,4 +1,4 @@
-package materialset
+package book
 
 import (
 	"net/http"
@@ -11,23 +11,23 @@ import (
 // Get the page.
 func Get(ctx *aero.Context) string {
 	id := ctx.Get("id")
-	set, err := mui.GetMaterialSet(id)
+	set, err := mui.GetBook(id)
 
 	if err != nil {
 		return ctx.Error(http.StatusNotFound, "Material set not found")
 	}
 
-	return ctx.HTML(components.MaterialSet(set))
+	return ctx.HTML(components.Book(set))
 }
 
 // Edit displays the editing interface.
 func Edit(ctx *aero.Context) string {
 	id := ctx.Get("id")
-	set, err := mui.GetMaterialSet(id)
+	set, err := mui.GetBook(id)
 
 	if err != nil {
 		return ctx.Error(http.StatusNotFound, "Material set not found")
 	}
 
-	return ctx.HTML(components.EditMaterialSet(set))
+	return ctx.HTML(components.EditBook(set))
 }

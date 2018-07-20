@@ -15,7 +15,6 @@ var DB = Node.Namespace("mui").RegisterTypes(
 	(*GoogleToUser)(nil),
 	(*Material)(nil),
 	(*MaterialSample)(nil),
-	(*MaterialSet)(nil),
 	(*User)(nil),
 	(*Session)(nil),
 )

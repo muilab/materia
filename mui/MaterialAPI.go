@@ -45,10 +45,10 @@ func (material *Material) DeleteInContext(ctx *aero.Context) error {
 
 // Delete deletes the material from the database.
 func (material *Material) Delete() error {
-	// Delete the material from all the sets that contained it
-	for set := range StreamMaterialSets() {
-		if set.Remove(material.ID) {
-			set.Save()
+	// Delete the material from all the books that contained it
+	for book := range StreamBooks() {
+		if book.Remove(material.ID) {
+			book.Save()
 		}
 	}
 

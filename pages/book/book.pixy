@@ -1,14 +1,14 @@
-component MaterialSet(set *mui.MaterialSet)
+component Book(set *mui.Book)
 	h1.mountable= set.Name
-	p.mountable MaterialSet details.
+	p.mountable Book details.
 
 	.mountable
 		a(href=set.Link() + "/edit")
 			svg-icon(name="pencil")
 
-component EditMaterialSet(set *mui.MaterialSet)
+component EditBook(set *mui.Book)
 	h1.mountable= "Editing: " + set.Name
-	p.mountable MaterialSet details.
+	p.mountable Book details.
 
 	each material in set.Materials()
 		EditMaterial(material)

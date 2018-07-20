@@ -1,28 +1,48 @@
 package mui
 
-import "github.com/aerogo/nano"
+import (
+	"github.com/aerogo/nano"
+)
 
-// Book contains a collection of material sets.
+// Book is a collection of materials.
 type Book struct {
-	ID             ID     `json:"id"`
-	Name           string `json:"name"`
-	MaterialSetIDs []ID   `json:"materialSets"`
+	ID          ID     `json:"id"`
+	Name        string `json:"name" editable:"true"`
+	Description string `json:"description" editable:"true"`
+	MaterialIDs []ID   `json:"materials"`
 
 	HasDraft
 	HasCreator
 	HasEditor
 }
 
-// MaterialSets returns all material sets of the given book.
-func (book *Book) MaterialSets() []*MaterialSet {
-	objects := DB.GetMany("MaterialSet", book.MaterialSetIDs)
-	sets := make([]*MaterialSet, len(objects))
+// Materials returns all materials of the given set.
+func (set *Book) Materials() []*Material {
+	objects := DB.GetMany("Material", set.MaterialIDs)
+	materials := make([]*Material, len(objects))
 
 	for index, obj := range objects {
-		sets[index] = obj.(*MaterialSet)
+		materials[index] = obj.(*Material)
 	}
 
-	return sets
+	return materials
+}
+
+// Link returns the permalink for this object.
+func (set *Book) Link() string {
+	return "/book/" + set.ID
+}
+
+// Remove material with the given ID from the material list.
+func (set *Book) Remove(materialID string) bool {
+	for index, item := range set.MaterialIDs {
+		if item == materialID {
+			set.MaterialIDs = append(set.MaterialIDs[:index], set.MaterialIDs[index+1:]...)
+			return true
+		}
+	}
+
+	return false
 }
 
 // GetBook returns a single book by the given ID.
@@ -62,7 +82,7 @@ func AllBooks() []*Book {
 	return all
 }
 
-// FilterBooks filters all books by a custom function.
+// FilterBooks filters all material sets by a custom function.
 func FilterBooks(filter func(*Book) bool) []*Book {
 	var filtered []*Book
 

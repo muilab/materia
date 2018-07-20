@@ -10,12 +10,12 @@ import (
 	"github.com/muilab/materia/layout"
 	"github.com/muilab/materia/pages/about"
 	"github.com/muilab/materia/pages/api/upload"
+	"github.com/muilab/materia/pages/book"
 	"github.com/muilab/materia/pages/books"
 	"github.com/muilab/materia/pages/contact"
 	"github.com/muilab/materia/pages/library"
 	"github.com/muilab/materia/pages/login"
 	"github.com/muilab/materia/pages/material"
-	"github.com/muilab/materia/pages/materialset"
 	"github.com/muilab/materia/pages/pricing"
 	"github.com/muilab/materia/pages/report"
 	"github.com/muilab/materia/pages/user"
@@ -41,8 +41,8 @@ func Install(app *aero.Application) {
 	l.Page("/user/:id/edit", user.Edit)
 	l.Page("/material/:id", material.Get)
 	l.Page("/material/:id/edit", material.Edit)
-	l.Page("/materialset/:id", materialset.Get)
-	l.Page("/materialset/:id/edit", materialset.Edit)
+	l.Page("/book/:id", book.Get)
+	l.Page("/book/:id/edit", book.Edit)
 
 	// API
 	app.Get("/material/:id/download", material.Download)
