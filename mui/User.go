@@ -10,7 +10,7 @@ import (
 // User represents a single authenticated user.
 type User struct {
 	ID         string       `json:"id"`
-	Nick       string       `json:"nick"`
+	Nick       string       `json:"nick" editable:"true"`
 	FirstName  string       `json:"firstName" private:"true"`
 	LastName   string       `json:"lastName" private:"true"`
 	Registered string       `json:"registered"`
@@ -56,6 +56,11 @@ func (user *User) RealName() string {
 	}
 
 	return user.FirstName + " " + user.LastName
+}
+
+// Link returns the permalink of the user.
+func (user *User) Link() string {
+	return "/+" + user.ID
 }
 
 // ConnectGoogle connects the user's account with a Google account.

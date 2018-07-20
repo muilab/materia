@@ -1,3 +1,17 @@
-component User(user *mui.User)
-	h1.mountable= user.Nick
-	p.mountable= user.RealName()
+component User(viewUser *mui.User, user *mui.User)
+	h1.mountable= viewUser.Nick
+	p.mountable= viewUser.RealName()
+
+	if user == viewUser
+		a.button.main-button.mountable(href=user.Link() + "/edit", title="Edit user profile")
+			svg-icon(name="pencil")
+
+component EditUser(user *mui.User)
+	.form(data-api="/api/user/" + user.ID)
+		h1.mountable= user.Nick
+
+		.input-sections
+			InputText("Nick", user.Nick, "Username", "Your public username")
+	
+	a.button.main-button.mountable(href=user.Link(), title="View profile")
+		svg-icon(name="eye")

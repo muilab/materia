@@ -37,6 +37,7 @@ func Install(app *aero.Application) {
 	l.Page("/about", about.Get)
 	l.Page("/login", login.Get)
 	l.Page("/user/:id", user.Get)
+	l.Page("/user/:id/edit", user.Edit)
 	l.Page("/material/:id", material.Get)
 	l.Page("/material/:id/edit", material.Edit)
 	l.Page("/materialset/:id", materialset.Get)
