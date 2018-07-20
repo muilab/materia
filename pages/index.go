@@ -28,7 +28,8 @@ func Install(app *aero.Application) {
 	l.Render = fullpage.Render
 
 	// Pages
-	l.Page("/", library.Get)
+	l.Page("/", library.Search)
+	l.Page("/library/search/:term", library.Search)
 	l.Page("/books", books.Get)
 	l.Page("/workshop", workshop.Get)
 	l.Page("/report", report.Get)

@@ -1,5 +1,6 @@
 component Library(materials []*mui.Material, user *mui.User)
 	h1.library-header.mountable Material Library
+	input.search.mountable.action(type="text", placeholder="Search...", data-action="searchMaterials", data-trigger="input")
 	
 	.materials
 		each material in materials

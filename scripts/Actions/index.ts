@@ -1,4 +1,5 @@
 export * from "./Object"
+export * from "./Search"
 export * from "./StatusBar"
 export * from "./Serialization"
 export * from "./Upload"
