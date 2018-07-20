@@ -1,5 +1,17 @@
 component Books(books []*mui.Book)
-	h1.mountable Books
+	h1.books-header.mountable Books
+
+	.books
+		.mountable
+			img.book-image(src="/images/books/example.png", alt="")
+		.mountable
+			img.book-image(src="/images/books/example.png", alt="")
+		.mountable
+			img.book-image(src="/images/books/example.png", alt="")
+		.mountable
+			img.book-image(src="/images/books/example.png", alt="")
+		.mountable
+			img.book-image(src="/images/books/example.png", alt="")
 	
 	each book in books
 		Book(book)

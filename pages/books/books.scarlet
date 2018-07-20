@@ -1,0 +1,10 @@
+.books-header
+	text-align center
+
+.books
+	horizontal-wrap
+	justify-content center
+
+.book-image
+	width 300px
+	height 300px
