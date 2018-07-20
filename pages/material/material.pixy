@@ -17,10 +17,6 @@ component Material(material *mui.Material, user *mui.User)
 						svg-icon.icon-with-text(name="download")
 						span Download
 				
-				a.button(href="/api" + material.Link(), target="_blank", data-ajax="false")
-					svg-icon.icon-with-text(name="code")
-					span API
-				
 				a.button(href=material.Link() + "/edit")
 					svg-icon.icon-with-text(name="pencil")
 					span Edit
@@ -28,6 +24,10 @@ component Material(material *mui.Material, user *mui.User)
 				button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="material")
 					svg-icon.icon-with-text(name="trash")
 					span Delete
+				
+				a.button(href="/api" + material.Link(), target="_blank", data-ajax="false")
+					svg-icon.icon-with-text(name="code")
+					span API
 
 	footer.mountable
 		span= material.Name
