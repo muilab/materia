@@ -1,0 +1,16 @@
+footer
+	margin-top 1rem
+	font-size 0.8rem
+	border-top ui-border
+	text-align center
+	padding-top 1.2rem
+
+	&.mounted
+		> span
+			opacity 0.5
+		
+		> a
+			opacity 0.85
+
+.footer-icon
+	margin-right 0.25em !important

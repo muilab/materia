@@ -1,8 +1,9 @@
 component User(viewUser *mui.User, user *mui.User)
-	h1.mountable= viewUser.Nick
-	p.mountable= viewUser.RealName()
+	.form
+		h1.mountable= viewUser.Nick
+		div!= utils.MountableMarkdown(markdown.Render(viewUser.Bio))
 
-	if user == viewUser
+	if user != nil && user.ID == viewUser.ID
 		a.button.main-button.mountable(href=user.Link() + "/edit", title="Edit user profile")
 			svg-icon(name="pencil")
 
@@ -12,6 +13,7 @@ component EditUser(user *mui.User)
 
 		.input-sections
 			InputText("Nick", user.Nick, "Username", "Your public username")
+			InputTextArea("Bio", user.Bio, "Bio", "Your introduction")
 	
 	a.button.main-button.mountable(href=user.Link(), title="View profile")
 		svg-icon(name="eye")

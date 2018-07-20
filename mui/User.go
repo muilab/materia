@@ -13,6 +13,7 @@ type User struct {
 	Nick       string       `json:"nick" editable:"true"`
 	FirstName  string       `json:"firstName" private:"true"`
 	LastName   string       `json:"lastName" private:"true"`
+	Bio        string       `json:"bio" editable:"true"`
 	Registered string       `json:"registered"`
 	LastLogin  string       `json:"lastLogin" private:"true"`
 	LastSeen   string       `json:"lastSeen" private:"true"`

@@ -8,7 +8,6 @@ component Material(material *mui.Material, user *mui.User)
 			h1.material-header.mountable= material.Name
 
 		.material-description!= utils.MountableMarkdown(markdown.Render(material.Description))
-
 		MaterialSamples(material, false)
 
 		if user != nil
@@ -29,6 +28,13 @@ component Material(material *mui.Material, user *mui.User)
 				button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="material")
 					svg-icon.icon-with-text(name="trash")
 					span Delete
+
+	footer.mountable
+		span= material.Name
+		span  material by 
+		a(href=material.Creator().Link())
+			svg-icon.icon-with-text.footer-icon(name="user")
+			span= material.Creator().Nick
 
 component EditMaterial(material *mui.Material)
 	.form
