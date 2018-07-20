@@ -12,6 +12,7 @@
 .material-samples
 	horizontal-wrap
 	justify-content space-evenly
+	margin-bottom 1rem
 
 .material-sample
 	margin 1rem
