@@ -42,7 +42,15 @@ func MaterialSampleImage(ctx *aero.Context) string {
 		return ctx.Error(http.StatusBadRequest, err)
 	}
 
-	material.AddSampleImageBytes(body)
+	sample := &mui.MaterialSample{
+		ID: mui.GenerateID("MaterialSample"),
+	}
+
+	sample.SetImageBytes(body)
+	sample.Save()
+
+	material.SampleIDs = append(material.SampleIDs, sample.ID)
 	material.Save()
+
 	return ctx.Text("ok")
 }

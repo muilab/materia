@@ -11,7 +11,7 @@ export function selectFile(cmf: Materia, button: HTMLButtonElement) {
 	let input = document.createElement("input")
 	input.setAttribute("type", "file")
 
-	input.onchange = () => {
+	input.onchange = async () => {
 		let file = input.files[0]
 
 		if(!file) {
@@ -30,7 +30,11 @@ export function selectFile(cmf: Materia, button: HTMLButtonElement) {
 			previewImage(file, previews)
 		}
 
-		uploadFile(file, fileType, endpoint, cmf)
+		// Upload
+		await uploadFile(file, fileType, endpoint, cmf)
+		
+		// Reload
+		cmf.reloadContent()
 	}
 
 	input.click()
@@ -38,40 +42,44 @@ export function selectFile(cmf: Materia, button: HTMLButtonElement) {
 
 // Upload file
 function uploadFile(file: File, fileType: string, endpoint: string, cmf: Materia) {
-	let reader = new FileReader()
+	return new Promise((resolve, reject) => {
+		let reader = new FileReader()
 
-	reader.onloadend = async () => {
-		let fileSize = reader.result.byteLength
+		reader.onloadend = async () => {
+			let fileSize = reader.result.byteLength
 
-		if(fileSize === 0) {
-			cmf.status.showError("File is empty")
-			return
+			if(fileSize === 0) {
+				cmf.status.showError("File is empty")
+				return reject("File is empty")
+			}
+
+			cmf.status.showInfo(`Preparing to upload ${fileType} (${bytesHumanReadable(fileSize)})`, -1)
+
+			try {
+				await uploadWithProgress(endpoint, {
+					method: "POST",
+					credentials: "include",
+					headers: {
+						"Content-Type": "application/octet-stream"
+					},
+					body: reader.result
+				}, e => {
+					let progress = e.loaded / (e.lengthComputable ? e.total : fileSize) * 100
+					cmf.status.showInfo(`Uploading ${fileType}...${progress.toFixed(1)}%`, -1)
+				})
+
+				cmf.status.showInfo(`Successfully uploaded your new ${fileType}.`)
+				return resolve()
+			} catch(err) {
+				cmf.status.showError(`Failed uploading your new ${fileType}.`)
+				console.error(err)
+				return reject(err)
+			}
 		}
 
-		cmf.status.showInfo(`Preparing to upload ${fileType} (${bytesHumanReadable(fileSize)})`, -1)
-
-		try {
-			await uploadWithProgress(endpoint, {
-				method: "POST",
-				credentials: "include",
-				headers: {
-					"Content-Type": "application/octet-stream"
-				},
-				body: reader.result
-			}, e => {
-				let progress = e.loaded / (e.lengthComputable ? e.total : fileSize) * 100
-				cmf.status.showInfo(`Uploading ${fileType}...${progress.toFixed(1)}%`, -1)
-			})
-
-			cmf.status.showInfo(`Successfully uploaded your new ${fileType}.`)
-		} catch(err) {
-			cmf.status.showError(`Failed uploading your new ${fileType}.`)
-			console.error(err)
-		}
-	}
-
-	cmf.status.showInfo(`Reading ${fileType} from disk...`, -1)
-	reader.readAsArrayBuffer(file)
+		cmf.status.showInfo(`Reading ${fileType} from disk...`, -1)
+		reader.readAsArrayBuffer(file)
+	})
 }
 
 // Preview image

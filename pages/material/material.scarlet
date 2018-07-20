@@ -12,3 +12,19 @@
 .material-samples
 	horizontal-wrap
 	justify-content space-evenly
+
+.material-sample
+	margin 1rem
+
+.material-sample-image
+	width 256px
+	height 256px
+	border ui-border
+	border-radius image-border-radius
+	box-shadow medium-shadow
+	object-fit cover
+	transform scale(1)
+	default-transition
+
+	:hover
+		transform scale(1.05)

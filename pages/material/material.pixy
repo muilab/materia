@@ -9,6 +9,8 @@ component Material(material *mui.Material, user *mui.User)
 
 		.material-description!= utils.MountableMarkdown(markdown.Render(material.Description))
 
+		MaterialSamples(material)
+
 		if user != nil
 			.buttons.mountable(data-api="/api/material/" + material.ID)
 				if material.HasImage()
@@ -51,6 +53,6 @@ component EditMaterial(material *mui.Material)
 
 component MaterialSamples(material *mui.Material)
 	.material-samples
-		for index, _ := range material.Samples
-			.material-sample.mountable
-				img.material-sample-image(src=fmt.Sprintf("/images/materials/medium/%s-sample-%d.jpg", material.ID, index), alt="Material sample")
+		each sample in material.Samples()
+			a.material-sample.mountable(href=sample.ImageLink("original"), target="_blank")
+				img.material-sample-image(src=sample.ImageLink("medium"), alt="Material sample")

@@ -6,13 +6,15 @@ import (
 	"github.com/aerogo/nano"
 )
 
+type ID = string
+
 // Material is a material that can be used for CG and manufacturing.
 type Material struct {
-	ID          string      `json:"id"`
-	Name        string      `json:"name" editable:"true"`
-	Description string      `json:"description" editable:"true"`
-	Image       ImageFile   `json:"image"`
-	Samples     []ImageFile `json:"samples"`
+	ID          string    `json:"id"`
+	Name        string    `json:"name" editable:"true"`
+	Description string    `json:"description" editable:"true"`
+	Image       ImageFile `json:"image"`
+	SampleIDs   []ID      `json:"samples"`
 
 	HasCreator
 	HasEditor
@@ -26,6 +28,18 @@ func (material *Material) Link() string {
 // HasImage tells you whether the material has an image.
 func (material *Material) HasImage() bool {
 	return material.Image.Extension != ""
+}
+
+// Samples returns all the samples for this material.
+func (material *Material) Samples() []*MaterialSample {
+	objects := DB.GetMany("MaterialSample", material.SampleIDs)
+	result := make([]*MaterialSample, len(objects))
+
+	for index, obj := range objects {
+		result[index] = obj.(*MaterialSample)
+	}
+
+	return result
 }
 
 // ImageLink returns the image URL of the material.
