@@ -35,6 +35,14 @@ export default class Materia {
 			this.run()
 		}
 
+		// Change scrolling method
+		this.app.scrollToTop = () => {
+			window.scrollTo({
+				top: document.getElementById("navigation").offsetTop,
+				behavior: "smooth"
+			})
+		}
+
 		// Idle
 		requestIdleCallback(this.onIdle.bind(this))
 	}

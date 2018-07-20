@@ -1,2 +1,3 @@
 #content
 	padding content-padding
+	min-height 100vh
