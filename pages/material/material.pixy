@@ -9,7 +9,7 @@ component Material(material *mui.Material, user *mui.User)
 
 		.material-description!= utils.MountableMarkdown(markdown.Render(material.Description))
 
-		MaterialSamples(material)
+		MaterialSamples(material, false)
 
 		if user != nil
 			.buttons.mountable(data-api="/api/material/" + material.ID)
@@ -46,13 +46,19 @@ component EditMaterial(material *mui.Material)
 				MaterialPreview(material)
 
 			InputFileUpload("material-sample-image", "Samples", "image", "/api/upload/material/" + material.ID + "/sample")
-			MaterialSamples(material)
+			MaterialSamples(material, true)
 		
 		a.button.main-button.mountable(href=material.Link(), title="View material")
 			svg-icon(name="eye")
 
-component MaterialSamples(material *mui.Material)
+component MaterialSamples(material *mui.Material, edit bool)
 	.material-samples
 		each sample in material.Samples()
-			a.material-sample.mountable(href=sample.ImageLink("original"), target="_blank")
-				img.material-sample-image(src=sample.ImageLink("medium"), alt="Material sample")
+			.material-sample.mountable(data-api="/api/materialsample/" + sample.ID, data-edit=edit)
+				a(href=sample.ImageLink("original"), target="_blank")
+					img.material-sample-image(src=sample.ImageLink("medium"), alt="Material sample")
+
+				if edit
+					.material-sample-toolbar
+						button.material-sample-delete.action(data-action="deleteObject", data-trigger="click", data-confirm-type="sample", data-return-path=material.Link() + "/edit")
+							svg-icon(name="trash")

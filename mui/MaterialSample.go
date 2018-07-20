@@ -4,8 +4,15 @@ import "fmt"
 
 // MaterialSample represents a material sample.
 type MaterialSample struct {
-	ID    ID        `json:"id"`
-	Image ImageFile `json:"image"`
+	ID         ID        `json:"id"`
+	MaterialID ID        `json:"materialId"`
+	Image      ImageFile `json:"image"`
+}
+
+// Material returns the material of the sample.
+func (sample *MaterialSample) Material() *Material {
+	material, _ := GetMaterial(sample.MaterialID)
+	return material
 }
 
 // ImageLink returns the image URL of the sample.

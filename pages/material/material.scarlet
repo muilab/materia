@@ -15,7 +15,9 @@
 	margin-bottom 1rem
 
 .material-sample
+	vertical
 	margin 1rem
+	position relative
 
 .material-sample-image
 	width 256px
@@ -29,3 +31,9 @@
 
 	:hover
 		transform scale(1.05)
+
+.material-sample-toolbar
+	horizontal
+	justify-content center
+	align-items center
+	margin-top 1rem

@@ -40,6 +40,18 @@ func (material *Material) Samples() []*MaterialSample {
 	return result
 }
 
+// RemoveSample removes the sample from the sample list.
+func (material *Material) RemoveSample(materialSampleID string) bool {
+	for index, item := range material.SampleIDs {
+		if item == materialSampleID {
+			material.SampleIDs = append(material.SampleIDs[:index], material.SampleIDs[index+1:]...)
+			return true
+		}
+	}
+
+	return false
+}
+
 // ImageLink returns the image URL of the material.
 func (material *Material) ImageLink(size string) string {
 	if !material.HasImage() {

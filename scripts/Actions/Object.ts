@@ -23,6 +23,12 @@ export function deleteObject(cmf: Materia, button: HTMLButtonElement) {
 	let endpoint = findAPIEndpoint(button)
 
 	cmf.network.post(endpoint + "/delete")
-	.then(() => cmf.app.load(returnPath))
+	.then(() => {
+		if(returnPath === location.pathname) {
+			cmf.reloadContent()
+		} else {
+			cmf.app.load(returnPath)
+		}
+	})
 	.catch(err => cmf.status.showError(err))
 }

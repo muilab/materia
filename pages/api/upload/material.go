@@ -43,7 +43,8 @@ func MaterialSampleImage(ctx *aero.Context) string {
 	}
 
 	sample := &mui.MaterialSample{
-		ID: mui.GenerateID("MaterialSample"),
+		ID:         mui.GenerateID("MaterialSample"),
+		MaterialID: material.ID,
 	}
 
 	sample.SetImageBytes(body)
