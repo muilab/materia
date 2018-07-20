@@ -2,11 +2,14 @@ import Materia from "../Materia"
 import Diff from "../Diff";
 
 export async function searchMaterials(cmf: Materia, input: HTMLInputElement) {
+	let url = "/_/library/search/" + input.value
+
 	if(input.value === "") {
-		return
+		url = "/_/"
 	}
 
-	let response = await fetch("/_/library/search/" + input.value)
+	let response = await fetch(url)
 	let html = await response.text()
-	Diff.innerHTML(cmf.app.content, html)
+	await Diff.innerHTML(cmf.app.content, html)
+	cmf.app.emit("DOMContentLoaded")
 }
