@@ -52,6 +52,16 @@ func (material *Material) Delete() error {
 		}
 	}
 
+	// Delete all samples for this material
+	for _, sample := range material.Samples() {
+		sample.Delete()
+	}
+
+	// Delete all image files
+	for _, output := range materialImageOutputs {
+		output.Delete(material.ID)
+	}
+
 	DB.Delete("Material", material.ID)
 	return nil
 }
