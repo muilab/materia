@@ -4,9 +4,9 @@ import "github.com/aerogo/nano"
 
 // Book contains a collection of material sets.
 type Book struct {
-	ID             string   `json:"id"`
-	Name           string   `json:"name"`
-	MaterialSetIDs []string `json:"materialSets"`
+	ID             ID     `json:"id"`
+	Name           string `json:"name"`
+	MaterialSetIDs []ID   `json:"materialSets"`
 
 	HasDraft
 	HasCreator

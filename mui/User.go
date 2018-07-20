@@ -9,7 +9,7 @@ import (
 
 // User represents a single authenticated user.
 type User struct {
-	ID         string       `json:"id"`
+	ID         ID           `json:"id"`
 	Nick       string       `json:"nick" editable:"true"`
 	FirstName  string       `json:"firstName" private:"true"`
 	LastName   string       `json:"lastName" private:"true"`

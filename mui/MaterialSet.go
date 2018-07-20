@@ -6,9 +6,9 @@ import (
 
 // MaterialSet is a set of materials.
 type MaterialSet struct {
-	ID          string   `json:"id"`
-	Name        string   `json:"name" editable:"true"`
-	MaterialIDs []string `json:"materials"`
+	ID          ID     `json:"id"`
+	Name        string `json:"name" editable:"true"`
+	MaterialIDs []ID   `json:"materials"`
 
 	HasDraft
 	HasCreator

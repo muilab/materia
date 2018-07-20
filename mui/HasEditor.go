@@ -2,8 +2,8 @@ package mui
 
 // HasEditor includes user ID and date for the last edit of this object.
 type HasEditor struct {
-	Edited   string `json:"edited"`
-	EditedBy string `json:"editedBy"`
+	Edited   DateTime `json:"edited"`
+	EditedBy ID       `json:"editedBy"`
 }
 
 // Editor returns the user who last edited this object.

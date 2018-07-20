@@ -4,7 +4,7 @@ import "fmt"
 
 // MaterialSample represents a material sample.
 type MaterialSample struct {
-	ID    string    `json:"id"`
+	ID    ID        `json:"id"`
 	Image ImageFile `json:"image"`
 }
 
