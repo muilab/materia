@@ -7,6 +7,9 @@ component Book(book *mui.Book, user *mui.User)
 		
 		.book-description!= utils.MountableMarkdown(markdown.Render(book.Description))
 
+		.mountable
+			BookMaterials(book, false)
+
 		if user != nil
 			.buttons.mountable(data-api="/api/book/" + book.ID)
 				a.button(href=book.Link() + "/edit")
@@ -38,18 +41,21 @@ component EditBook(book *mui.Book)
 					img.book-image(src=book.ImageLink("medium"), alt=book.Name)
 
 			.input-section.mountable
-				label(for="") Materials:
-
-				.book-materials
-					each material in book.Materials()
-						.book-material
-							img.material-image-small(src=material.ImageLink("medium"), alt=material.Name)
-					
-					.book-material
-						button.action(data-action="wip", data-trigger="click")
-							svg-icon(name="plus")
+				label Materials:
+				BookMaterials(book, true)
 			
 			InputBool("Public", book.Public, "Public", "Is the book publicly visible?")
 	
 	a.button.main-button.mountable(href=book.Link(), title="View book")
 		svg-icon(name="eye")
+
+component BookMaterials(book *mui.Book, edit bool)
+	.book-materials
+		each material in book.Materials()
+			a.book-material(href=material.Link(), title=material.Name)
+				img.material-image-small(src=material.ImageLink("medium"), alt=material.Name)
+		
+		if edit
+			.book-material
+				button.action(data-action="wip", data-trigger="click")
+					svg-icon(name="plus")
