@@ -19,6 +19,7 @@ component EditUser(user *mui.User)
 			ThemeButton("Orange", "Default")
 			ThemeButton("Blue", "Blue")
 			ThemeButton("Pink", "Pink")
+			ThemeButton("Green", "Green")
 	
 	a.button.main-button.mountable(href=user.Link(), title="View profile")
 		svg-icon(name="eye")

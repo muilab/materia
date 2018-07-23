@@ -3,10 +3,16 @@ import Materia from "../Materia"
 const themes = {
 	"Default": {},
 	"Blue": {
-		"link-color-h": "200"
+		"link-color-h": "200",
+		"link-color-l": "48%"
 	},
 	"Pink": {
-		"link-color-h": "330"
+		"link-color-h": "330",
+		"link-color-l": "48%"
+	},
+	"Green": {
+		"link-color-h": "110",
+		"link-color-l": "34%"
 	}
 }
 
