@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/aerogo/aero"
 
 	"github.com/aerogo/session-store-nano"
@@ -25,6 +27,13 @@ func configure(app *aero.Application) *aero.Application {
 
 	// Content security policy
 	app.ContentSecurityPolicy.Set("img-src", "https: data:")
+
+	// Development config
+	production := os.Getenv("PRODUCTION")
+
+	if production == "" {
+		app.Config.Domain = "beta.materia.mui.jp"
+	}
 
 	// Pages
 	pages.Install(app)
