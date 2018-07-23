@@ -1,20 +1,14 @@
-component Books(books []*mui.Book)
+component Books(books []*mui.Book, user *mui.User)
 	h1.books-header.mountable Books
 
 	.books
-		.mountable
-			img.book-image(src="/images/books/example.png", alt="")
-		.mountable
-			img.book-image(src="/images/books/example.png", alt="")
-		.mountable
-			img.book-image(src="/images/books/example.png", alt="")
-		.mountable
-			img.book-image(src="/images/books/example.png", alt="")
-		.mountable
-			img.book-image(src="/images/books/example.png", alt="")
+		each book in books
+			BookPreview(book)
 	
-	each book in books
-		Book(book)
+	if user != nil
+		button.main-button.mountable.action(data-action="newObject", data-trigger="click", data-type="book", title="Add book")
+			svg-icon(name="plus")
 
-component Book(book *mui.Book)
-	h2= book.Name
+component BookPreview(book *mui.Book)
+	a.mountable(href=book.Link(), title=book.Name)
+		img.book-image(src=book.ImageLink("medium"), alt=book.Name)

@@ -8,6 +8,17 @@ component InputTextArea(id string, value string, label string, placeholder strin
 		label(for=id)= label + ":"
 		textarea.input-element.action(id=id, data-field=id, placeholder=placeholder, title=placeholder, data-action="save", data-trigger="change")= value
 
+component InputBool(id string, value bool, label string, title string)
+	.input-section.mountable
+		label(for=id)= label + ":"
+		button.action(id=id, data-action="toggleBoolean", data-trigger="click", data-value=value, data-field=id, title=title)
+			if value
+				svg-icon.icon-with-text(name="toggle-on")
+				span ON
+			else
+				svg-icon.icon-with-text(name="toggle-off")
+				span OFF
+
 component InputFileUpload(id string, label string, uploadType string, endpoint string)
 	.input-section.mountable
 		label(for=id)= label + ":"

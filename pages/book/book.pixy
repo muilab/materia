@@ -1,14 +1,30 @@
-component Book(set *mui.Book)
-	h1.mountable= set.Name
+component Book(book *mui.Book, user *mui.User)
+	h1.mountable= book.Name
 	p.mountable Book details.
 
-	.mountable
-		a(href=set.Link() + "/edit")
-			svg-icon(name="pencil")
+	if user != nil
+		.buttons.mountable(data-api="/api/book/" + book.ID)
+			a.button(href=book.Link() + "/edit")
+				svg-icon.icon-with-text(name="pencil")
+				span Edit
 
-component EditBook(set *mui.Book)
-	h1.mountable= "Editing: " + set.Name
-	p.mountable Book details.
+			button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="book")
+				svg-icon.icon-with-text(name="trash")
+				span Delete
+			
+			a.button(href="/api" + book.Link(), target="_blank", data-ajax="false")
+				svg-icon.icon-with-text(name="code")
+				span API
 
-	each material in set.Materials()
-		EditMaterial(material)
+component EditBook(book *mui.Book)
+	.form
+		if book.Name == ""
+			h1.book-header.mountable Untitled
+		else
+			h1.book-header.mountable= book.Name
+
+		.input-sections(data-api="/api/book/" + book.ID)
+			InputText("Name", book.Name, "Name", "Name of the book")
+			InputTextArea("Description", book.Description, "Description", "Description of the book")
+			InputFileUpload("book-image", "Image", "image", "/api/upload/book/" + book.ID + "/image")
+			InputBool("Public", book.Public, "Public", "Is the book publicly visible?")

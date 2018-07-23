@@ -8,6 +8,15 @@ import (
 
 // Get the page.
 func Get(ctx *aero.Context) string {
-	books := mui.AllBooks()
-	return ctx.HTML(components.Books(books))
+	user := mui.GetUserFromContext(ctx)
+
+	books := mui.FilterBooks(func(book *mui.Book) bool {
+		if user != nil && user.ID == book.CreatedBy {
+			return true
+		}
+
+		return book.Public
+	})
+
+	return ctx.HTML(components.Books(books, user))
 }

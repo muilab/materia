@@ -53,3 +53,24 @@ export async function save(cmf: Materia, input: HTMLElement) {
 		}
 	}
 }
+
+// Enable or disable (bool field)
+export async function toggleBoolean(cmf: Materia, button: HTMLButtonElement) {
+	let obj = {}
+	let apiEndpoint = findAPIEndpoint(button)
+
+	obj[button.dataset.field] = button.dataset.value === "true" ? false : true
+	button.disabled = true
+
+	try {
+		// Update boolean value
+		await cmf.network.post(apiEndpoint, obj)
+
+		// Reload content
+		cmf.reloadContent()
+	} catch(err) {
+		cmf.status.showError(err)
+	} finally {
+		button.disabled = false
+	}
+}

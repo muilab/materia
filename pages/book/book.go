@@ -10,6 +10,7 @@ import (
 
 // Get the page.
 func Get(ctx *aero.Context) string {
+	user := mui.GetUserFromContext(ctx)
 	id := ctx.Get("id")
 	set, err := mui.GetBook(id)
 
@@ -17,7 +18,7 @@ func Get(ctx *aero.Context) string {
 		return ctx.Error(http.StatusNotFound, "Material set not found")
 	}
 
-	return ctx.HTML(components.Book(set))
+	return ctx.HTML(components.Book(set, user))
 }
 
 // Edit displays the editing interface.

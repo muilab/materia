@@ -1,24 +1,27 @@
 package mui
 
 import (
+	"fmt"
+
 	"github.com/aerogo/nano"
 )
 
 // Book is a collection of materials.
 type Book struct {
-	ID          ID     `json:"id"`
-	Name        string `json:"name" editable:"true"`
-	Description string `json:"description" editable:"true"`
-	MaterialIDs []ID   `json:"materials"`
+	ID          ID        `json:"id"`
+	Name        string    `json:"name" editable:"true"`
+	Description string    `json:"description" editable:"true"`
+	Image       ImageFile `json:"image"`
+	MaterialIDs []ID      `json:"materials"`
 
 	HasDraft
 	HasCreator
 	HasEditor
 }
 
-// Materials returns all materials of the given set.
-func (set *Book) Materials() []*Material {
-	objects := DB.GetMany("Material", set.MaterialIDs)
+// Materials returns all materials of the given book.
+func (book *Book) Materials() []*Material {
+	objects := DB.GetMany("Material", book.MaterialIDs)
 	materials := make([]*Material, len(objects))
 
 	for index, obj := range objects {
@@ -28,16 +31,36 @@ func (set *Book) Materials() []*Material {
 	return materials
 }
 
+// HasImage tells you whether the book has an image.
+func (book *Book) HasImage() bool {
+	return book.Image.Extension != ""
+}
+
+// ImageLink returns the image URL of the book.
+func (book *Book) ImageLink(size string) string {
+	if !book.HasImage() {
+		return "/images/errors/404.png"
+	}
+
+	extension := ".jpg"
+
+	if size == "original" {
+		extension = book.Image.Extension
+	}
+
+	return fmt.Sprintf("/images/books/%s/%s%s?%d", size, book.ID, extension, book.Image.LastModified)
+}
+
 // Link returns the permalink for this object.
-func (set *Book) Link() string {
-	return "/book/" + set.ID
+func (book *Book) Link() string {
+	return "/book/" + book.ID
 }
 
 // Remove material with the given ID from the material list.
-func (set *Book) Remove(materialID string) bool {
-	for index, item := range set.MaterialIDs {
+func (book *Book) Remove(materialID string) bool {
+	for index, item := range book.MaterialIDs {
 		if item == materialID {
-			set.MaterialIDs = append(set.MaterialIDs[:index], set.MaterialIDs[index+1:]...)
+			book.MaterialIDs = append(book.MaterialIDs[:index], book.MaterialIDs[index+1:]...)
 			return true
 		}
 	}

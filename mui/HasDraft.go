@@ -2,15 +2,15 @@ package mui
 
 // HasDraft includes a boolean indicating whether the object is a draft.
 type HasDraft struct {
-	IsDraft bool `json:"isDraft" editable:"true"`
+	Public bool `json:"public" editable:"true"`
 }
 
-// GetIsDraft tells you whether the object is a draft or not.
-func (obj *HasDraft) GetIsDraft() bool {
-	return obj.IsDraft
+// GetPublic tells you whether the object is a draft or not.
+func (obj *HasDraft) GetPublic() bool {
+	return obj.Public
 }
 
-// SetIsDraft sets the draft state for this object.
-func (obj *HasDraft) SetIsDraft(isDraft bool) {
-	obj.IsDraft = isDraft
+// SetPublic sets the draft state for this object.
+func (obj *HasDraft) SetPublic(Public bool) {
+	obj.Public = Public
 }
