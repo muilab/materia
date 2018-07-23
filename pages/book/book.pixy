@@ -37,8 +37,6 @@ component EditBook(book *mui.Book)
 				.book.mountable
 					img.book-image(src=book.ImageLink("medium"), alt=book.Name)
 
-			InputBool("Public", book.Public, "Public", "Is the book publicly visible?")
-
 			.input-section.mountable
 				label(for="") Materials:
 
@@ -48,8 +46,10 @@ component EditBook(book *mui.Book)
 							img.material-image-small(src=material.ImageLink("medium"), alt=material.Name)
 					
 					.book-material
-						button
+						button.action(data-action="wip", data-trigger="click")
 							svg-icon(name="plus")
+			
+			InputBool("Public", book.Public, "Public", "Is the book publicly visible?")
 	
 	a.button.main-button.mountable(href=book.Link(), title="View book")
 		svg-icon(name="eye")
