@@ -46,6 +46,11 @@ func (book *Book) DeleteInContext(ctx *aero.Context) error {
 
 // Delete deletes the book from the database.
 func (book *Book) Delete() error {
+	// Delete all image files
+	for _, output := range bookImageOutputs {
+		output.Delete(book.ID)
+	}
+
 	DB.Delete("Book", book.ID)
 	return nil
 }
