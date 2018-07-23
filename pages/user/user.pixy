@@ -14,6 +14,16 @@ component EditUser(user *mui.User)
 		.input-sections
 			InputText("Nick", user.Nick, "Username", "Your public username")
 			InputTextArea("Bio", user.Bio, "Bio", "Your introduction")
+		
+		.buttons
+			ThemeButton("Orange", "Default")
+			ThemeButton("Blue", "Blue")
+			ThemeButton("Pink", "Pink")
 	
 	a.button.main-button.mountable(href=user.Link(), title="View profile")
 		svg-icon(name="eye")
+
+component ThemeButton(buttonLabel string, themeName string)
+	button.action.mountable(data-action="changeTheme", data-trigger="click", data-theme=themeName)
+		svg-icon.icon-with-text(name="paint-brush")
+		span= buttonLabel
