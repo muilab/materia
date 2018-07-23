@@ -8,12 +8,19 @@ import (
 	"strings"
 
 	"github.com/aerogo/aero"
+	"github.com/aerogo/log"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/muilab/materia/mui"
 	"github.com/muilab/materia/mui/utils"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 )
+
+var googleLog = log.New()
+
+func init() {
+	googleLog.AddOutput(log.File("logs/auth.google.log"))
+}
 
 // GoogleUser is the user data we receive from Google
 type GoogleUser struct {
@@ -78,7 +85,13 @@ func InstallGoogleAuth(app *aero.Application) {
 		}
 
 		defer resp.Body.Close()
-		data, _ := ioutil.ReadAll(resp.Body)
+		data, err := ioutil.ReadAll(resp.Body)
+
+		if err != nil {
+			return ctx.Error(http.StatusBadRequest, "Error reading user data", err)
+		}
+
+		googleLog.Info(string(data))
 
 		// Construct a GoogleUser object
 		var googleUser GoogleUser
