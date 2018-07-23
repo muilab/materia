@@ -32,11 +32,10 @@ func (book *Book) Authorize(ctx *aero.Context, action string) error {
 // Create books the data for a new material book with data we received from the API request.
 func (book *Book) Create(ctx *aero.Context) error {
 	book.ID = GenerateID("Book")
-	book.Name = "Untitled"
 	book.IsDraft = true
 	book.Created = utils.DateTimeUTC()
 	book.CreatedBy = GetUserFromContext(ctx).ID
-	book.MaterialIDs = []string{}
+	book.MaterialIDs = []ID{}
 	return nil
 }
 

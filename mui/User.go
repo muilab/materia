@@ -93,7 +93,7 @@ func (user *User) ConnectEmail(email string) {
 }
 
 // GetUser fetches the user with the given ID from the database.
-func GetUser(id string) (*User, error) {
+func GetUser(id ID) (*User, error) {
 	obj, err := DB.Get("User", id)
 
 	if err != nil {

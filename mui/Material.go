@@ -68,7 +68,7 @@ func (material *Material) ImageLink(size string) string {
 }
 
 // GetMaterial returns a single material by the given ID.
-func GetMaterial(id string) (*Material, error) {
+func GetMaterial(id ID) (*Material, error) {
 	obj, err := DB.Get("Material", id)
 
 	if err != nil {

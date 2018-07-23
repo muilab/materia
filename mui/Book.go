@@ -46,7 +46,7 @@ func (set *Book) Remove(materialID string) bool {
 }
 
 // GetBook returns a single book by the given ID.
-func GetBook(id string) (*Book, error) {
+func GetBook(id ID) (*Book, error) {
 	obj, err := DB.Get("Book", id)
 
 	if err != nil {
