@@ -1,6 +1,8 @@
 package books
 
 import (
+	"sort"
+
 	"github.com/aerogo/aero"
 	"github.com/muilab/materia/components"
 	"github.com/muilab/materia/mui"
@@ -16,6 +18,10 @@ func Get(ctx *aero.Context) string {
 		}
 
 		return book.Public
+	})
+
+	sort.Slice(books, func(i, j int) bool {
+		return books[i].Created > books[j].Created
 	})
 
 	return ctx.HTML(components.Books(books, user))

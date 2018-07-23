@@ -48,6 +48,7 @@ func Install(app *aero.Application) {
 	app.Get("/material/:id/download", material.Download)
 	app.Post("/api/upload/material/:id/image", upload.MaterialImage)
 	app.Post("/api/upload/material/:id/sample", upload.MaterialSampleImage)
+	app.Post("/api/upload/book/:id/image", upload.BookImage)
 
 	// Script bundle
 	scriptBundle := js.Bundle()

@@ -24,6 +24,7 @@ func MaterialImage(ctx *aero.Context) string {
 
 	material.SetImageBytes(body)
 	material.Save()
+
 	return ctx.Text("ok")
 }
 

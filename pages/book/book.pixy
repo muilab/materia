@@ -1,6 +1,6 @@
 component Book(book *mui.Book, user *mui.User)
 	h1.mountable= book.Name
-	p.mountable Book details.
+	.book-description!= utils.MountableMarkdown(markdown.Render(book.Description))
 
 	if user != nil
 		.buttons.mountable(data-api="/api/book/" + book.ID)

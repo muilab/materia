@@ -10,5 +10,5 @@ component Books(books []*mui.Book, user *mui.User)
 			svg-icon(name="plus")
 
 component BookPreview(book *mui.Book)
-	a.mountable(href=book.Link(), title=book.Name)
+	a.book.mountable(href=book.Link(), title=book.Name)
 		img.book-image(src=book.ImageLink("medium"), alt=book.Name)
