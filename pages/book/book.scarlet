@@ -4,3 +4,7 @@
 .book-image-preview
 	horizontal
 	justify-content center
+
+.book-material
+	width 64px
+	height 64px
