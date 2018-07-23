@@ -19,3 +19,7 @@
 	box-shadow medium-shadow
 	object-fit cover
 	default-transition
+
+.book-image-large
+	width 512px
+	height 512px

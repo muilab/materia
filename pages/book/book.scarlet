@@ -1,0 +1,6 @@
+.book-description
+	margin 1rem 0
+
+.book-image-preview
+	horizontal
+	justify-content center

@@ -1,20 +1,25 @@
 component Book(book *mui.Book, user *mui.User)
-	h1.mountable= book.Name
-	.book-description!= utils.MountableMarkdown(markdown.Render(book.Description))
+	.form
+		h1.mountable= book.Name
 
-	if user != nil
-		.buttons.mountable(data-api="/api/book/" + book.ID)
-			a.button(href=book.Link() + "/edit")
-				svg-icon.icon-with-text(name="pencil")
-				span Edit
+		.book.mountable
+			img.book-image.book-image-large(src=book.ImageLink("large"), alt=book.Name)
+		
+		.book-description!= utils.MountableMarkdown(markdown.Render(book.Description))
 
-			button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="book")
-				svg-icon.icon-with-text(name="trash")
-				span Delete
-			
-			a.button(href="/api" + book.Link(), target="_blank", data-ajax="false")
-				svg-icon.icon-with-text(name="code")
-				span API
+		if user != nil
+			.buttons.mountable(data-api="/api/book/" + book.ID)
+				a.button(href=book.Link() + "/edit")
+					svg-icon.icon-with-text(name="pencil")
+					span Edit
+
+				button.action(data-action="deleteObject", data-trigger="click", data-return-path="/", data-confirm-type="book")
+					svg-icon.icon-with-text(name="trash")
+					span Delete
+				
+				a.button(href="/api" + book.Link(), target="_blank", data-ajax="false")
+					svg-icon.icon-with-text(name="code")
+					span API
 
 component EditBook(book *mui.Book)
 	.form
@@ -27,4 +32,12 @@ component EditBook(book *mui.Book)
 			InputText("Name", book.Name, "Name", "Name of the book")
 			InputTextArea("Description", book.Description, "Description", "Description of the book")
 			InputFileUpload("book-image", "Image", "image", "/api/upload/book/" + book.ID + "/image")
+
+			.book-image-preview
+				.book.mountable
+					img.book-image(src=book.ImageLink("medium"), alt=book.Name)
+
 			InputBool("Public", book.Public, "Public", "Is the book publicly visible?")
+	
+	a.button.main-button.mountable(href=book.Link(), title="View book")
+		svg-icon(name="eye")
